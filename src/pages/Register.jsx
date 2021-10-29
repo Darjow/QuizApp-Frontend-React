@@ -7,22 +7,21 @@ import { Link } from "react-router-dom";
 export default function Register({initRegister}){
   
 const {register, handleSubmit, formState: { errors } ,setError, clearErrors}= useForm();
-
 const onSubmit = (data) => {
   const {email,username, password,confirmation, firstname, lastname } = data;
+  console.log("hi");
   if(password === confirmation){
-      clearErrors("confirmation");
-      initRegister(email,username,password, firstname, lastname);
+    clearErrors("confirmation");
+    initRegister(email,username,password, firstname, lastname);
   }else{
     setError("confirmation", {type: "validate", message:"The password combinations are not the same."});
   }
 }
 return (
-  <div className="auth-wrapper">
-    <div className="auth-inner">
+  <div className="auth-wrapper register">
+    <div className="auth-inner register-inner">
     <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
       <h3>Register</h3>
-
 
       <div className="form-group">
         <label htmlFor="email">Email</label>
@@ -97,7 +96,7 @@ return (
       </div>
 
       <button type="submit" className="btn btn-primary mt-2">Register</button>
-      <p className="has-account text-right">Already have an account? <Link to="/login" className="text-primary">Click Here</Link> to log in.</p>
+      <p className="has-account text-right">Already have an account?<br/> <Link to="/login" className="text-primary">Click Here</Link> to log in.</p>
     </form>
     </div>
     </div>

@@ -2,16 +2,15 @@ import {Link} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 
 export default function Login({initLogin}){
-  const {register, handleSubmit, formState: { errors } }= useForm();
-
+  const {register, handleSubmit, formState: { errors } }= useForm(); 
 
   const onSubmit = (data) => {
     const {username, password} = data;
     initLogin(username,password);
   }
   return (
-    <div className="auth-wrapper">
-      <div className="auth-inner">
+    <div className="auth-wrapper login">
+      <div className="auth-inner login-inner">
       <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
         <h3>Sign In</h3>
         <div className="form-group">
@@ -24,8 +23,7 @@ export default function Login({initLogin}){
           />
           {errors.username && <p className="text-red-500">{errors.username.message}</p>}
         </div>
-
-        <div className="form-group">
+      <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
             type="password" name="password" id="password"
@@ -38,7 +36,7 @@ export default function Login({initLogin}){
         </div>
 
         <button type="submit" className="btn btn-primary mt-2">Log In</button>
-        <p className="no-account text-right">No account yet? <Link to="/register" className="text-primary">Click Here</Link> to sign up</p>
+        <p className="no-account text-right">No account yet?<br/> <Link to="/register" className="text-primary">Click Here</Link> to sign up</p>
       </form>
       </div>
       </div>

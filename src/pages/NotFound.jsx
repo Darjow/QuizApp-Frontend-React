@@ -5,9 +5,9 @@ const NotFound = () => {
 
   return (
       <div>
-          <h1>Pagina niet gevonden</h1>
+          <h1>Page not found</h1>
           <p>
-              Er is geen pagina met als url {location.pathname}, probeer iets anders.
+              No page is found with url {location.pathname}.
           </p>
       </div>
   );
