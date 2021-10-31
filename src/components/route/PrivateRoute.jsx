@@ -1,5 +1,5 @@
-import { Route } from "react-router";
-import Login from "../../pages/Login";
+import { Redirect, Route } from "react-router";
+
 
 export const PrivateRoute = ({ component: Comp, loggedIn, path, ...rest }) => {
   return (
@@ -7,7 +7,7 @@ export const PrivateRoute = ({ component: Comp, loggedIn, path, ...rest }) => {
       path={path}
       {...rest}
       render={(props) => {
-        return loggedIn ? <Comp {...props} /> : <Login to="/login" />;
+        return loggedIn ? <Comp {...props} /> : <Redirect to="/login" />;
       }}
     />
   );

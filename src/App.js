@@ -9,13 +9,11 @@ import Welkom from './pages/Welcome';
 import { PrivateRoute } from './components/route/PrivateRoute';
 
 
-const initLogin = (username,password) => {
+
 // TODO DATABASE QUERY
 // if (valid login) {respond with return starting page}
 // if (invalid login) {respond with return value "errors" -> display in loginscreen}
 
-  console.log(`| Username:  ${username} | Password: ${password} | `)
-}
 
 const initRegister = (email,username,password,firstname, lastname) => {
   console.log(email,username,password,firstname,lastname)
@@ -23,16 +21,21 @@ const initRegister = (email,username,password,firstname, lastname) => {
    //EMAIL MUST BE UNIQUE
 }
 
-const loggedIn =() => {
-  return localStorage.getItem("token");
-} 
 
+const loggedIn = () => {
+
+}
   
 
 function App() {
 
+ 
   return (
     <Switch>
+        <Route exact path="/">
+          <Welkom/>
+         </Route>
+
         <PrivateRoute
           path="/home"
           loggedIn={loggedIn()}
@@ -44,12 +47,11 @@ function App() {
           component={Welkom}  >
         </PrivateRoute>
       <Route exact path="/login">
-        <Login initLogin={initLogin} />
+        <Login/>
       </Route>
       <Route exact path="/register">
-        <Register initRegister={initRegister}/>
+        <Register/>
       </Route>
-  
       <Route path="*">
         <NotFound />
       </Route>

@@ -9,13 +9,13 @@
   box-sizing: border-box;
 }
 body {
-  background: #E8DED1 !important;
   min-height: 100vh;
   display: flex;
   font-weight: 400;
   font-family: 'Fira Sans', sans-serif;
   margin-top: 100px;
 }
+
 
 h1,h2,h3,h4,h5,h6,label,span {
   font-weight: 500;
@@ -33,6 +33,7 @@ body, html, .App, #root, .auth-wrapper {
 }
 
 .auth-wrapper {
+  background-color:lightskyblue;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -40,13 +41,11 @@ body, html, .App, #root, .auth-wrapper {
 }
 
 .auth-inner {
-  width: 450px;
   margin: auto;
-  background: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  background-color: white;
   padding: 40px 55px 45px 55px;
   border-radius: 15px;
-  transition: all .3s;
+
 }
 
 .auth-wrapper .form-control:focus {
@@ -96,12 +95,14 @@ video {
 .welkom-container > h1 {
   margin-top: 50px;
   color: #ffffff;
-  font-size: 6vw;
+  font-size: 5vw;
   margin-top: -100px;
 }
 .welkom-container > p {
-  color: #ffffff;
-  font-size: 3vw;
+  width: 100%;
+  text-align: center;
+  color: lightskyblue;
+  font-size: 2.7vw;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 .welkom-btns .btn {
@@ -111,51 +112,72 @@ video {
   color: lightskyblue;
 }
 
-
-
-@media screen and (max-width: 800px) {
-  .register,
-  .login{
-    margin-left: 3%;
-    margin-right: 3%;
-    }
-  .register-inner,
-  .login-inner{
-    width: 300px;
-  }
-  body{
-    margin: auto;
-    }
-    .welkom-container > h1 {
-      margin-top: 0;
-    }
-    .welkom-btns {
-      position: fixed;
-      bottom: 100px;
-      width: 175px;
-      
-    }
-    .btn-mobile{
-      display:block;
-      text-decoration: none;
-    }
-    .btn{
-      width: 100%;
-    }
-    .welkom-container > p {
-      margin-top: 5px;
-      size: 3.3vw;
-    }
- 
+.home-redirect{
+  text-decoration: none !important;
+  margin-left: 128px;
+  margin-top: 64px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 45px;
+  font-family: 'PT Sans Narrow', sans-serif;
+  width: 200px;
+}
+.home-redirect:hover{
+  color: #ffffff;
 }
 
-@media only screen and (min-width: 801px)  {
+
+
+@media screen and (max-width: 767) {
+
+  .auth-wrapper{
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .auth-inner{
+    display: inline;
+    width: 300px;
+    height: 500px;
+  }
+
+  .auth-inner h1{
+    margin-top: 20px;
+  }
+   
+  .welkom-btns {
+    position: fixed;
+    bottom: 50px;
+    width: 200px;
+  }
+  .btn-login{
+    margin-top: 100px;
+  }
+  .btn-mobile{
+    display:block;
+    text-decoration: none;
+  }
+  .btn{
+    width: 100%;
+  }
+  .welkom-container > p {
+    margin-top: 5px;
+    size: 3.3vw;
+  }
+
+}
+
+@media only screen and (min-width: 768px)  {
 
   .welkom-container > p {
-    margin-top: 350px;
+    margin-top: 450px;
+    box-shadow: 10px 10px 70px darkcyan;
   }
   .welkom-btns .btn {
     margin: 6px;
     width: 15em;
+  }
+  .auth-inner{
+    width: 450px;
   }
 }

@@ -18,8 +18,9 @@ const onSubmit = (data) => {
   }
 }
 return (
-  <div className="auth-wrapper register">
-    <div className="auth-inner register-inner">
+  <div className="auth-wrapper">
+      <Link className="home-redirect" to="/">Quiz-Master</Link>
+    <div className="auth-inner">
     <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
       <h3>Register</h3>
 
