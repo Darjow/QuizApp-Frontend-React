@@ -1,14 +1,15 @@
-import { Redirect, Route } from "react-router";
+import { Redirect, Route, useLocation } from "react-router";
+import { useSession } from "../../contexts/AuthProvider";
 
 
-export const PrivateRoute = ({ component: Comp, loggedIn, path, ...rest }) => {
+export default function PrivateRoute({children, ...rest }){
+  const {isAuthed} = useSession();
+  const {pathname} = useLocation();
   return (
-    <Route
-      path={path}
-      {...rest}
-      render={(props) => {
-        return loggedIn ? <Comp {...props} /> : <Redirect to="/login" />;
-      }}
-    />
-  );
-};
+    <Route {...rest}>
+      {
+      isAuthed ? (children): <Redirect from={pathname} to="/login"/>}
+    </Route>
+  )
+}
+
