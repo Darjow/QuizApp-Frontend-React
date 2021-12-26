@@ -26,7 +26,6 @@ const registerMethod = useRegister();
     const handleErrors = (e) => {
       if(error){
         if(e.target["name"] === "email" && (error.status === 420 || error.status === 422)){
-          console.log("email");
           setbError(null);
         }if(e.target["name"] === "username" && (error.status === 421 || error.status === 422)){
           setbError(null);
@@ -51,7 +50,7 @@ return (
           onKeyDown={handleErrors}
         />
         {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-        {bError && (bError.status === 420 ||bError.status === 422) && <p className="text-red-500">Email already in use</p>}
+        {error && error.data.message.toLowerCase().includes("email") && <p className="text-red-500">Email already in use</p>}
       </div>
 
       <div className="form-group">
@@ -72,7 +71,7 @@ return (
             onKeyDown={handleErrors}
           />
           {errors.username && <p className="text-red-500">{errors.username.message}</p>}
-          { bError &&(bError.status === 421 ||bError.status === 422) && <p className="text-red-500">Username already in use.</p> }
+          { error && error.data.message.toLowerCase().includes("username") && <p className="text-red-500">Username already in use.</p> }
         </div>
 
 
