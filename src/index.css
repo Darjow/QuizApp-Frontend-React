@@ -101,15 +101,16 @@ video {
 .welkom-container > p {
   width: 100%;
   text-align: center;
-  color: lightskyblue;
+  color: rgb(15, 160, 250);
   font-size: 2.7vw;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
 }
 .welkom-btns .btn {
   margin: 6px;;
 }
 .quiz-master{
-  color: lightskyblue;
+  color: rgb(15, 160, 250);
 }
 
 .home-redirect{

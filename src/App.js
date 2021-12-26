@@ -12,7 +12,7 @@ import { QuizesProvider } from './contexts/QuizProvider';
 import QuizList from './components/component/QuizList';
 import NavMenu from './components/component/NavMenu';
 import PrivateRoute from "./components/route/PrivateRoute";
-import LoginSkipWelcomeRoute from  "./components/route/LoginSkipWelcomeRoute"
+import Quizes from './pages/Quizes';
 
 
 function App() {
@@ -25,29 +25,33 @@ function App() {
             <Route exact path="/">
               <Redirect to="/welcome"/>
             </Route>     
-            <PrivateRoute exact path="/home">
+            <PrivateRoute exact path="/home" loggedIn={true} toIf="/login">
               <Home/>
             </PrivateRoute>
-            <LoginSkipWelcomeRoute exact path="/welcome">
+            <PrivateRoute exact path="/welcome" loggedIn={false} toIf="/home">
               <Welcome/>
-            </LoginSkipWelcomeRoute>
-            <Route exact path="/login">
+            </PrivateRoute>
+            <PrivateRoute exact path="/login" loggedIn={false} toIf="/home">
               <Login/>
-            </Route>
-            <Route exact path="/register">
+            </PrivateRoute>
+            <PrivateRoute exact path="/register" loggedIn={false} toIf="/home">
               <Register/>
-            </Route>
+              <PrivateRoute exact path="/quizes/approve" role="admin" toIf="/home">
+                <Quizes/>
+              </PrivateRoute>
+            </PrivateRoute>
             <Route exact path="/test">
               <QuizList/>
             </Route>
             <Route path="*">
               <NotFound/>
             </Route>
+      
           </Switch>
         </Router>    
-      </QuizesProvider>
+     </QuizesProvider>
     </AuthProvider>
-  );  
+ )
 }
 
 export default App;

@@ -1,49 +1,78 @@
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import {useRegister, useSession} from "../contexts/AuthProvider"
 
 
+export default function Register(){
+const history = useHistory();
+const {register, handleSubmit, formState: { errors}, clearErrors, getValues}= useForm();
+const {error} = useSession();
+const [bError, setbError] = useState("");
+
+const registerMethod = useRegister();
+
+  const handleRegister = useCallback(async ({email,username, firstname, lastname, password}) => {
+    setbError(null); 
+    clearErrors();
+    const data = await registerMethod({email,username, firstname, lastname, password});
+      if(data){
+        history.replace("/home");
+      }else{
+        setbError(error);
+      }
+    }, [history, registerMethod, clearErrors, error]);
+
+    const handleErrors = (e) => {
+      if(error){
+        if(e.target["name"] === "email" && (error.status === 420 || error.status === 422)){
+          console.log("email");
+          setbError(null);
+        }if(e.target["name"] === "username" && (error.status === 421 || error.status === 422)){
+          setbError(null);
+        }
+      }
+    }
 
 
-export default function Register({initRegister}){
-  
-const {register, handleSubmit, formState: { errors } ,setError, clearErrors}= useForm();
-const onSubmit = (data) => {
-  const {email,username, password,confirmation, firstname, lastname } = data;
-  console.log("hi");
-  if(password === confirmation){
-    clearErrors("confirmation");
-    initRegister(email,username,password, firstname, lastname);
-  }else{
-    setError("confirmation", {type: "validate", message:"The password combinations are not the same."});
-  }
-}
 return (
   <div className="auth-wrapper">
       <Link className="home-redirect" to="/">Quiz-Master</Link>
     <div className="auth-inner">
-    <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
+    <form className="register-form" onSubmit={handleSubmit(handleRegister)}>
       <h3>Register</h3>
 
       <div className="form-group">
         <label htmlFor="email">Email</label>
         <input
           type="text" name="email" id="email"
-          {...register('email',{ required:"Please fill in a email.", pattern:{value:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, message:"Please enter a valid email."}})}
-          defaultValue=""
+          {...register('email',{  required:"Please fill in a email.", pattern:{value:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, message:"Please enter a valid email."}})}
           className="form-control"
+          onKeyDown={handleErrors}
         />
         {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+        {bError && (bError.status === 420 ||bError.status === 422) && <p className="text-red-500">Email already in use</p>}
       </div>
 
       <div className="form-group">
           <label htmlFor="username">Username</label>
           <input
             type="text" name="username" id="username"
-            {...register('username',{ required:"Please fill in your username." })}
-            defaultValue=""
+            {...register('username',{ 
+              required:{
+                value: true,
+                message: "Please fill in your username." 
+              },
+              maxLength:{
+                value:20,
+                message: "Please use a smaller name"
+              }
+            })}
             className="form-control"
+            onKeyDown={handleErrors}
           />
           {errors.username && <p className="text-red-500">{errors.username.message}</p>}
+          { bError &&(bError.status === 421 ||bError.status === 422) && <p className="text-red-500">Username already in use.</p> }
         </div>
 
 
@@ -51,7 +80,7 @@ return (
         <label htmlFor="firstname">First Name</label>
         <input
           type="text" name="firstname" id="firstname"
-          {...register('firstname', {required:"Please fill in your first name.", pattern:{value:"/s", message:"Please input non-digits as a name"}})}
+          {...register('firstname', {required:"Please fill in your first name.", pattern:{value:"/s", message:"Please input non-digits as a name"}})}                
           className="form-control"
           defaultValue=""
         />
@@ -88,7 +117,13 @@ return (
         <label htmlFor="confirmation">Password Confirmation</label>
         <input
           type="password" name="confirmation" id="confirmation"
-          {...register('confirmation', {required:"Please fill in the confirmation password.", minLength:8} )}
+          {...register('confirmation', {required:"Please fill in the confirmation password.",  validate:{
+            notIdentical: value => {
+              const password =  getValues("password");
+              return password === value? null: "both passwords need to be the same";
+            }
+          } } ) }
+        
           className="form-control"
           defaultValue=""
         />
@@ -103,4 +138,5 @@ return (
     </div>
 
   )
-}
+        }
+      

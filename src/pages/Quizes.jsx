@@ -1,10 +1,10 @@
 import NavMenu from "../components/component/NavMenu"
 
-export default function Home(){
+export default function Quizes(){
   return (
     <>
     <NavMenu/>
-    <p>Logged in</p>
+    <p>Quizes</p>
     </>
   )
 

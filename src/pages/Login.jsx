@@ -1,35 +1,40 @@
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
-import { useCallback, useEffect } from 'react';
+import { useCallback} from 'react';
 import { useLogin, useSession } from '../contexts/AuthProvider';
-import {useHistory} from "react-router-dom";
+import { useState } from 'react';
+
 
 
 export default function Login(){
-  const {register, handleSubmit,formState: { errors } , clearErrors}= useForm(); 
-  const login = useLogin();
+  const {register, handleSubmit,formState: { errors } ,clearErrors}= useForm({reValidateMode:"onChange"})
   const history = useHistory();
-  const {isAuthed ,error} = useSession();
+  const {error} = useSession();
+  const [bError, setbError] = useState("");
+
+  const login = useLogin();
   
-    
-  useEffect(() => {
-    if(isAuthed){
-      history.replace("/home");
+    const handleLogin = useCallback(async ({username, password}) => {
+      setbError(null); 
+      clearErrors();
+      const check = await login(username, password);
+      if(check){
+        history.replace("/home");
+      }else{
+        setbError(error);
+      }
+
+  },[clearErrors,login, history, error]);
+
+
+  const handleChange = (e) => {
+    if(bError){
+      if(e.target["name"] === "username" || e.target["name"] === "password" ){
+        setbError(null);
+      }
+      
     }
-  }, [isAuthed, history])
-
-
-
-  const handleLogin = useCallback(async ({username, password}) => {
-    clearErrors();
-    const success = await login(username, password);
-    if(success){
-      history.replace("/home");
-    }
-
-  },[clearErrors,login, history]);
-
-
+  }
 
   return (
     <div className="auth-wrapper">
@@ -41,29 +46,49 @@ export default function Login(){
           <label htmlFor="username">Username</label>
           <input
             type="text" name="username" id="username"
-            {...register('username',{ required:"Please fill in your username." })}
-            defaultValue=""
+            {...register('username',{ 
+              required:{
+                value:true,
+                message:"Please fill in your username."
+               },
+               maxLength:{
+                 value:20, 
+                 message:"Invalid username."
+                }})}
             className="form-control"
-          />
-         
+            onSubmit={handleSubmit(handleLogin)}
+            onKeyDown={handleChange}
+          /> 
           {errors.username && <p className="text-red-500">{errors.username.message}</p>}
+          {!errors.username  && bError && error.data.message.includes("Username") && <p className='text-red-500'>{error.data.message}</p>}
+
         </div>
       <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
             type="password" name="password" id="password"
-            {...register('password', {required:"Please fill in your password."} )}
+            {...register('password', {
+              required:{
+                value:true,
+                message:"Please fill in a password."
+              },
+              minLength:{
+                value:8,
+                message:"Password must be minimum 8 characters long."
+              }
+              })}
             className="form-control"
-            defaultValue=""
+            onSubmit={handleSubmit}
+            onKeyDown={handleChange}
           />
+
           {errors.password && <p className="text-red-500">{errors.password.message}</p>}
-          {
-            error? (
-              <p className='text-red-500'>{error}</p>
-            ) : null
-          }
+          {!errors.password && bError && error.data.message.includes("Password") && <p className='text-red-500'>{error.data.message}</p>}
+          
+
+       
         </div>
-        <button type="submit" className="btn-login btn btn-primary mt-2">Login</button>
+        <button type="submit" className="btn-login btn btn-primary">Login</button>
         <p className="no-account text-right">No account yet?<br/> <Link to="/register" className="text-primary">Click Here</Link> to sign up</p>
       </form>
       </div>
