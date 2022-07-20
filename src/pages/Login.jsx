@@ -38,7 +38,7 @@ export default function Login(){
 
   return (
     <div className="auth-wrapper">
-      <Link className="home-redirect" to="/">Quiz-Master</Link>
+      <h1 className="login-quiz-master title" to="/">Quiz-Master</h1>
       <div className="auth-inner">
       <form className="login-form" onSubmit={handleSubmit(handleLogin)}>
         <h3>Sign In</h3>
@@ -88,7 +88,7 @@ export default function Login(){
 
        
         </div>
-        <button type="submit" className="btn-login btn btn-primary">Login</button>
+        <button type="submit" className="mt-2 btn-login btn btn-primary">Login</button>
         <p className="no-account text-right">No account yet?<br/> <Link to="/register" className="text-primary">Click Here</Link> to sign up</p>
       </form>
       </div>

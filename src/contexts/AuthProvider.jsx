@@ -16,6 +16,7 @@ function parseJwt(token){
   const base64url = token.split(".")[1];
   const payload = Buffer.from(base64url,"base64");
   const jsonPayload = payload.toString("ascii");
+
   return JSON.parse(jsonPayload);
 }
 
@@ -58,6 +59,8 @@ export const AuthProvider = ({children}) =>{
     const {exp,id} = parseJwt(token);
     const expiry = parseExp(exp);
     const stillValid = expiry >= new Date();
+
+
 
     if(stillValid){
       localStorage.setItem(TOKEN,token)
@@ -116,13 +119,11 @@ export const AuthProvider = ({children}) =>{
   }, [setSession]);
 
 
-  const hasRole = useCallback((role) => {
+  //dit zou in de toekomst misschien undefined kunnen geven, dan eens [...roles] of [roles] proberen als parameter
+  const hasRole = useCallback((roles) => {
     if (!user) return false;
-    if(user.user){
-      return user.user.roles.includes(role);
-    }else{
-      return user.roles.includes(role);
-    }
+    return roles.includes(user.role);
+
   }, [user])
 
   const value = useMemo(() =>  ({

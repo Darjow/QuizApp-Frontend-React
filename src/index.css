@@ -4,6 +4,12 @@
 
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
 
+:root{
+  --main-color: lightskyblue;
+  --secondary-color: beige;
+  --active-color: rgb(84, 182, 244);
+  --font-family: "Fira Sans", sans-serif;
+}
 
 * {
   box-sizing: border-box;
@@ -12,14 +18,17 @@ body {
   min-height: 100vh;
   display: flex;
   font-weight: 400;
-  font-family: 'Fira Sans', sans-serif;
+  font-family: var(--font-family);
   margin-top: 100px;
 }
 
 
 h1,h2,h3,h4,h5,h6,label,span {
   font-weight: 500;
-  font-family: 'Fira Sans', sans-serif;
+  font-family: var(--font-family);
+}
+a:hover{
+  color: var(--active-color);
 }
 
 body, html, .App, #root, .auth-wrapper {
@@ -33,7 +42,7 @@ body, html, .App, #root, .auth-wrapper {
 }
 
 .auth-wrapper {
-  background-color:lightskyblue;
+  background-color: var(--main-color);
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -49,7 +58,7 @@ body, html, .App, #root, .auth-wrapper {
 }
 
 .auth-wrapper .form-control:focus {
-  border-color: #167bff;
+  border-color: var(--main-color);
   box-shadow: none;
 }
 
@@ -101,7 +110,7 @@ video {
 .welkom-container > p {
   width: 100%;
   text-align: center;
-  color: rgb(15, 160, 250);
+  color: var(--main-color);
   font-size: 2.7vw;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bold;
@@ -110,22 +119,26 @@ video {
   margin: 6px;;
 }
 .quiz-master{
-  color: rgb(15, 160, 250);
+  color: var(--main-color)
 }
 
-.home-redirect{
-  text-decoration: none !important;
+.login-quiz-master{
   margin-left: 128px;
   margin-top: 64px;
+}
+.header-quiz-master:hover{
+  color: var(--active-color);
+}
+
+.title{
+  text-decoration: none !important;
   color: #ffffff;
   font-weight: 700;
   font-size: 45px;
   font-family: 'PT Sans Narrow', sans-serif;
   width: 200px;
 }
-.home-redirect:hover{
-  color: #ffffff;
-}
+
 
 
 

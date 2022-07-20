@@ -10,7 +10,6 @@ import ScrollToTop from './components/functions/ScrollToTop';
 import { AuthProvider} from './contexts/AuthProvider';
 import { QuizesProvider } from './contexts/QuizProvider';
 import QuizList from './components/component/QuizList';
-import NavMenu from './components/component/NavMenu';
 import PrivateRoute from "./components/route/PrivateRoute";
 import Quizes from './pages/Quizes';
 
