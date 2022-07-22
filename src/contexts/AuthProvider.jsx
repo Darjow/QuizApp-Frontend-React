@@ -119,11 +119,13 @@ export const AuthProvider = ({children}) =>{
   }, [setSession]);
 
 
-  //dit zou in de toekomst misschien undefined kunnen geven, dan eens [...roles] of [roles] proberen als parameter
-  const hasRole = useCallback((roles) => {
+  const hasRole = useCallback((role) => {
     if (!user) return false;
-    return roles.includes(user.role);
-
+    if(user.user){
+      return user.user.roles.includes(role);
+    }else{
+      return user.roles.includes(role);
+    }
   }, [user])
 
   const value = useMemo(() =>  ({
