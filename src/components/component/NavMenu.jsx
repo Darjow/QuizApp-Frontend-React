@@ -33,6 +33,10 @@ export default function NavMenu() {
     }
       return false;
     }
+
+  const handleExtendedNavbar = () => {
+    setExtendNavbar((curr) => !curr);
+  }
             
   return (
     (isAuthed? (
@@ -45,11 +49,7 @@ export default function NavMenu() {
             <NavbarLink to={user? user.user? `/profile/${user.user.id}`: `/profile/${user.id}`: "/profile"}>Profile</NavbarLink>
             {adminExtraNav()? ( <NavbarLink to="quizes/approve">Approve quizes</NavbarLink>): <>  </>}
             <NavbarLink to="/login" onClick={handleLogout}>Logout</NavbarLink>
-            <OpenLinksButton
-              onClick={() => {
-                setExtendNavbar((curr) => !curr);
-              }}
-            >
+            <OpenLinksButton onClick={handleExtendedNavbar}>
               {extendNavbar ? <>&#10005;</> : <> &#8801;</>}
             </OpenLinksButton>
           </NavbarLinkContainer>
@@ -57,11 +57,11 @@ export default function NavMenu() {
       {extendNavbar && (
 
         <NavbarExtendedContainer>
-          <NavbarLinkExtended to="/play">Play</NavbarLinkExtended>
-          <NavbarLinkExtended to="/create">Create a quiz</NavbarLinkExtended>
-          <NavbarLinkExtended to={user? user.user? `/profile/${user.user.id}`: `/profile/${user.id}`: "/profile"}>Profile</NavbarLinkExtended>
-          {adminExtraNav()? <NavbarLinkExtended to="/quizes/approve">Approve quizes</NavbarLinkExtended> : <></>}
-          <NavbarLinkExtended to="/login" onClick={handleLogout} >Logout</NavbarLinkExtended>
+          <NavbarLinkExtended to="/play" onClick={handleExtendedNavbar}>Play</NavbarLinkExtended>
+          <NavbarLinkExtended to="/create" onClick={handleExtendedNavbar}>Create a quiz</NavbarLinkExtended>
+          <NavbarLinkExtended to={user? user.user? `/profile/${user.user.id}`: `/profile/${user.id}`: "/profile"} onClick={handleExtendedNavbar}>Profile</NavbarLinkExtended>
+          {adminExtraNav()? <NavbarLinkExtended to="/quizes/approve" onClick={handleExtendedNavbar}>Approve quizes</NavbarLinkExtended> : <></>}
+          <NavbarLinkExtended to="/login" onClick={handleLogout}>Logout</NavbarLinkExtended>
         </NavbarExtendedContainer>
       )}
     </NavbarContainer>

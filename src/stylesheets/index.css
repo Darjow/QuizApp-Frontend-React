@@ -71,6 +71,7 @@ a:hover{
   margin: 2rem;
   background-color: var(--main-color) !important;
   color: white;
+  border-radius: 20px !important;
 }
 
 

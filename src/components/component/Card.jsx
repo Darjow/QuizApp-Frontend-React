@@ -1,6 +1,5 @@
 import React from 'react';
 import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText} from 'mdb-react-ui-kit';
-import { Button } from './Button';
 
 
 
