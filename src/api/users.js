@@ -1,6 +1,6 @@
 import {axios} from ".";
 
-//eventueel extra: ervoor zorgen dat dit beveiligd is tegen cracken?
+
 
 
 export const login = async(username,password) => {

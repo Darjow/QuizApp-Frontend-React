@@ -6,13 +6,14 @@
 
 :root{
   --main-color: lightskyblue;
-  --secondary-color: beige;
   --active-color: rgb(84, 182, 244);
   --font-family: "Fira Sans", sans-serif;
 }
 
 * {
   box-sizing: border-box;
+  font-family: var(--font-family);
+  font-weight: 500;
 }
 body {
   min-height: 100vh;
@@ -21,19 +22,61 @@ body {
   font-family: var(--font-family);
   margin-top: 100px;
 }
-
-
-h1,h2,h3,h4,h5,h6,label,span {
+.button{
+  background-color: var(--main-color);
+  display: inline-block;
   font-weight: 500;
-  font-family: var(--font-family);
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding: 0.3rem 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.25 rem;
+  color: white;
+}
+.button:hover{
+  background-color: var(--active-color);
+}
+.home_button{
+  background-color: var(--active-color) !important;
+}
+.home_button:hover{
+  font-size: 130%;
 }
 a:hover{
-  color: var(--active-color);
+  color: var(--active-color) ;
 }
+
+.greeting-container{
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+
+}
+.greeting{
+  padding: 20px 20px;
+  background-color: var(--main-color);
+  color: var(--active-color);
+  border-radius: 20px;
+  color: white;
+}
+.card{
+  border: none !important;
+  margin: 2rem;
+  background-color: var(--main-color) !important;
+  color: white;
+}
+
 
 body, html, .App, #root, .auth-wrapper {
   width: 100%;
-  height: 100%;
+  height: 100%; 
 }
 
 .navbar-light {
@@ -167,7 +210,7 @@ video {
   .btn-login{
     margin-top: 100px;
   }
-  .btn-mobile{
+  .button{
     display:block;
     text-decoration: none;
   }

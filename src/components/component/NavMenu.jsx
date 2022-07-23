@@ -10,7 +10,6 @@ import {
   NavbarLink,
   OpenLinksButton,
   NavbarLinkExtended,
-  Home
 } from "./NavBarElements"
 import { NavLink } from "react-router-dom";
 
@@ -39,10 +38,11 @@ export default function NavMenu() {
     (isAuthed? (
     <NavbarContainer extendNavbar={extendNavbar}>
       <NavbarInnerContainer>
-      <NavLink to="/" className="header-quiz-master title">Quiz-Master</NavLink>
+      <NavLink to="/" className="header-quiz-master title" style={{marginLeft:'1rem'}}>Quiz-Master</NavLink>
           <NavbarLinkContainer>
-            <NavbarLink to={user? user.user? `/profile/${user.user.ID}`: `/profile${user.ID}`: "/profile"}>Profile</NavbarLink>
             <NavbarLink to="/play"> Play</NavbarLink>
+            <NavbarLink to="/create">Create a quiz</NavbarLink>
+            <NavbarLink to={user? user.user? `/profile/${user.user.id}`: `/profile/${user.id}`: "/profile"}>Profile</NavbarLink>
             {adminExtraNav()? ( <NavbarLink to="quizes/approve">Approve quizes</NavbarLink>): <>  </>}
             <NavbarLink to="/login" onClick={handleLogout}>Logout</NavbarLink>
             <OpenLinksButton
@@ -57,8 +57,9 @@ export default function NavMenu() {
       {extendNavbar && (
 
         <NavbarExtendedContainer>
-          <NavbarLinkExtended to={user? user.user? `/profile/${user.user.ID}`: `/profile${user.ID}`: "/profile"}>Profile</NavbarLinkExtended>
           <NavbarLinkExtended to="/play">Play</NavbarLinkExtended>
+          <NavbarLinkExtended to="/create">Create a quiz</NavbarLinkExtended>
+          <NavbarLinkExtended to={user? user.user? `/profile/${user.user.id}`: `/profile/${user.id}`: "/profile"}>Profile</NavbarLinkExtended>
           {adminExtraNav()? <NavbarLinkExtended to="/quizes/approve">Approve quizes</NavbarLinkExtended> : <></>}
           <NavbarLinkExtended to="/login" onClick={handleLogout} >Logout</NavbarLinkExtended>
         </NavbarExtendedContainer>

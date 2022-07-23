@@ -1,5 +1,6 @@
 import {axios} from ".";
 
+
 export const getAllQuiz = async () => {
   const { data } = await axios.get(`quiz`, {
     param:{

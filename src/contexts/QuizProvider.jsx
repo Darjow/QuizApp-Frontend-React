@@ -8,7 +8,6 @@ import {
 } from "react";
 
 import * as quizApi from "../api/quiz";
-import { useSession } from "./AuthProvider";
 
 export const quizContext = createContext();
 export const useQuizes = () => useContext(quizContext);
@@ -19,7 +18,8 @@ export const QuizesProvider = ({ children }) => {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const [currentQuiz, setCurrentQuiz] = useState({});
-  const {ready: authReady} = useSession();
+
+  //const {ready: authReady} = useSession();
 
   const refreshQuizes = useCallback(async () => {
     try{
@@ -27,6 +27,8 @@ export const QuizesProvider = ({ children }) => {
       setLoading(true);
       const data = await quizApi.getAllQuiz();
       setQuizes(data.data);
+      return data.data;
+
     } catch(error){
       console.log(error);
       setError(error);
@@ -36,11 +38,11 @@ export const QuizesProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if(authReady && !initialLoad){
+    if(!initialLoad){
       refreshQuizes();
       setInitialLoad(true);
     }
-  }, [authReady, initialLoad, refreshQuizes]);
+  }, [initialLoad, refreshQuizes]);
 
 
 const createOrUpdateQuiz = useCallback( async ({id, category, type, difficulty, question, correct_answer, approved, author, incorrect_anwers}) => {
@@ -74,11 +76,13 @@ const deleteQuiz = useCallback( async (id) => {
   }, [refreshQuizes]
 );
 
+/*
 const setQuizToUpdate  = useCallback( (id) => {
   setCurrentQuiz(id === null? {} : quizes.find((e) => e.id === id)
   );
 }, [quizes]
 );
+*/
 
 const value = useMemo( () => ({
   quizes,
@@ -87,7 +91,7 @@ const value = useMemo( () => ({
   currentQuiz,
   createOrUpdateQuiz,
   deleteQuiz,
-  setQuizToUpdate
+  setCurrentQuiz
 }),
 [
   quizes,
@@ -96,7 +100,8 @@ const value = useMemo( () => ({
   currentQuiz,
   createOrUpdateQuiz,
   deleteQuiz,
-  setQuizToUpdate
+  setCurrentQuiz
+  //setQuizToUpdate
 ]
 );
 

@@ -55,11 +55,10 @@ export const AuthProvider = ({children}) =>{
   const [token, setToken] = useState(localStorage.getItem(TOKEN));
   const [user, setUser] = useState(null);
 
-  const setSession = useCallback(async (token, user) => {
+  const setSession = useCallback(async (token, gebruiker) => {
     const {exp,id} = parseJwt(token);
     const expiry = parseExp(exp);
     const stillValid = expiry >= new Date();
-
 
 
     if(stillValid){
@@ -70,18 +69,23 @@ export const AuthProvider = ({children}) =>{
       token = null;
     }
     setAuthToken(token);
-    setReady(stillValid);
     setToken(token);
+    setReady(stillValid);
 
-    if (!user && stillValid){
-      user = await userApi.getById(id);
+    if (gebruiker && stillValid) {
+      setUser(gebruiker);
+    }else if(!gebruiker && stillValid){
+      const g = await userApi.getById(id);
+      setUser(g.user);
+    }else{
+      setUser(null)
     }
-    setUser(user);
   },[]);
 
+
   useEffect(() => {
-    setSession(token, null);
-  }, [token, setSession]);
+    setSession(token, user);
+  }, [token, user, setSession]);
 
   const login = useCallback(async (email,password) => {
     try{
