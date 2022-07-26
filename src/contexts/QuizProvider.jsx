@@ -8,9 +8,12 @@ import {
 } from "react";
 
 import * as quizApi from "../api/quiz";
+import { useSession } from "./AuthProvider";
 
 export const quizContext = createContext();
+
 export const useQuizes = () => useContext(quizContext);
+
 
 export const QuizesProvider = ({ children }) => {
   const [initialLoad, setInitialLoad] = useState(false);
@@ -18,8 +21,7 @@ export const QuizesProvider = ({ children }) => {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const [currentQuiz, setCurrentQuiz] = useState({});
-
-  //const {ready: authReady} = useSession();
+  const {ready: authReady} = useSession();
 
   const refreshQuizes = useCallback(async () => {
     try{
@@ -38,11 +40,12 @@ export const QuizesProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if(!initialLoad){
+    if(authReady && !initialLoad){
       refreshQuizes();
       setInitialLoad(true);
     }
-  }, [initialLoad, refreshQuizes]);
+  }, [authReady, initialLoad, refreshQuizes]);
+
 
 
 const createOrUpdateQuiz = useCallback( async ({id, category, type, difficulty, question, correct_answer, approved, author, incorrect_anwers}) => {
@@ -60,6 +63,7 @@ const createOrUpdateQuiz = useCallback( async ({id, category, type, difficulty, 
 }, [refreshQuizes]
 
 );
+
 
 const deleteQuiz = useCallback( async (id) => {
   try{

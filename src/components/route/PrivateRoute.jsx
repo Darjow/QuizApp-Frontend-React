@@ -2,8 +2,7 @@ import { useMemo } from "react";
 import { Redirect, Route, useLocation } from "react-router";
 import { useSession } from "../../contexts/AuthProvider";
 
-
-export default function PrivateRoute({children, toIf, method,loggedIn, role, ...rest }){
+export default function PrivateRoute({children, toIf, path, method,loggedIn, role, ...rest }){
   const {isAuthed, hasRole} = useSession();
   const {pathname} = useLocation();
 
@@ -15,9 +14,8 @@ export default function PrivateRoute({children, toIf, method,loggedIn, role, ...
   
 
   return (
-    <Route {...rest}>
-      {
-      isAllowed? (children): <Redirect from={pathname} to={toIf}/>}
+    <Route>
+      {isAllowed? (children): <Redirect from={pathname} to={toIf}/>}
     </Route>
   )
 }

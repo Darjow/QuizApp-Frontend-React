@@ -60,7 +60,7 @@ a:hover{
 
 }
 .greeting{
-  padding: 20px 20px;
+  padding: 2rem;
   background-color: var(--main-color);
   color: var(--active-color);
   border-radius: 20px;
@@ -173,6 +173,52 @@ video {
 .header-quiz-master:hover{
   color: var(--active-color);
 }
+.quiz-container{
+  background: var(--main-color);
+  border-radius: 10px;
+  box-shadow: 0 0 10px 2px;
+  width: 600px;
+  margin:auto;
+  margin-top: 2rem;
+  color: white;
+}
+.quiz-header  h2, h3{
+  padding:1rem;
+  text-align: center;
+  margin: 0;
+}
+.author{
+  font-weight: 800
+}
+.list-container{
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+.quiz-header ul li{
+  font-size: 150%;
+}
+.quiz-header ul li label{
+  cursor: pointer;
+}
+.answer{
+  margin: 0px;
+  width: 100%;
+  padding: 0.5rem 0rem;
+}
+.answer-active{
+  background-color: var(--active-color);
+}
+.submit-answer {
+  margin-top: 1rem;
+  width:100%;
+  background-color: var(--active-color);
+  padding: 0.5rem;
+  margin: 0;
+  font-size: 150%;  
+}
 
 .title{
   text-decoration: none !important;
@@ -186,22 +232,8 @@ video {
 
 
 
-@media screen and (max-width: 767) {
+@media screen and (max-width: 767px) {
 
-  .auth-wrapper{
-    margin: 0px;
-    padding: 0px;
-  }
-
-  .auth-inner{
-    display: inline;
-    width: 300px;
-    height: 500px;
-  }
-
-  .auth-inner h1{
-    margin-top: 20px;
-  }
    
   .welkom-btns {
     position: fixed;
@@ -222,6 +254,11 @@ video {
     margin-top: 5px;
     size: 3.3vw;
   }
+  .quiz-container{
+    width: 100% !important;
+    overflow: hidden;
+  }
+
 
 }
 
@@ -238,4 +275,6 @@ video {
   .auth-inner{
     width: 450px;
   }
+
+
 }

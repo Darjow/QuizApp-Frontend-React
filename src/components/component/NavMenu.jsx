@@ -44,7 +44,7 @@ export default function NavMenu() {
       <NavbarInnerContainer>
       <NavLink to="/" className="header-quiz-master title" style={{marginLeft:'1rem'}}>Quiz-Master</NavLink>
           <NavbarLinkContainer>
-            <NavbarLink to="/play"> Play</NavbarLink>
+            <NavbarLink to="/select"> Play</NavbarLink>
             <NavbarLink to="/create">Create a quiz</NavbarLink>
             <NavbarLink to={user? user.user? `/profile/${user.user.id}`: `/profile/${user.id}`: "/profile"}>Profile</NavbarLink>
             {adminExtraNav()? ( <NavbarLink to="quizes/approve">Approve quizes</NavbarLink>): <>  </>}
@@ -57,7 +57,7 @@ export default function NavMenu() {
       {extendNavbar && (
 
         <NavbarExtendedContainer>
-          <NavbarLinkExtended to="/play" onClick={handleExtendedNavbar}>Play</NavbarLinkExtended>
+          <NavbarLinkExtended to="/select" onClick={handleExtendedNavbar}>Play</NavbarLinkExtended>
           <NavbarLinkExtended to="/create" onClick={handleExtendedNavbar}>Create a quiz</NavbarLinkExtended>
           <NavbarLinkExtended to={user? user.user? `/profile/${user.user.id}`: `/profile/${user.id}`: "/profile"} onClick={handleExtendedNavbar}>Profile</NavbarLinkExtended>
           {adminExtraNav()? <NavbarLinkExtended to="/quizes/approve" onClick={handleExtendedNavbar}>Approve quizes</NavbarLinkExtended> : <></>}

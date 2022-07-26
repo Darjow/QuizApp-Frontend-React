@@ -34,3 +34,7 @@ export const deleteQuiz = async (id) => {
   await axios.delete(`quiz/${id}`);
 
 }
+
+export const getQuizesByCategorieAndDifficulty = async (category, difficulty) => {
+  return await axios.get(`quiz/${category}/${difficulty}`)
+}
