@@ -15,3 +15,8 @@ export const getById = async (id) => {
   const {data} = await axios.get(`users/${id}`);
   return data;
 }
+
+export const addScore = async (id, score) => {
+  const {data} = await axios.post(`users/${id}/score`, {score})
+  return data;
+}

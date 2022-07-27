@@ -3,6 +3,7 @@ import {useForm} from 'react-hook-form';
 import { useCallback} from 'react';
 import { useLogin, useSession } from '../contexts/AuthProvider';
 import { useState } from 'react';
+import Loader from '../components/component/Loader';
 
 
 
@@ -13,6 +14,8 @@ export default function Login(){
   const [bError, setbError] = useState("");
 
   const login = useLogin();
+
+
   
     const handleLogin = useCallback(async ({username, password}) => {
       setbError(null); 
@@ -21,20 +24,22 @@ export default function Login(){
       if(check){
         history.replace("/home");
       }else{
-        setbError(error);
+        //setbError(error);
+        setbError("wrong credentials")
       }
 
-  },[clearErrors,login, history, error]);
+  },[clearErrors,login, history]);
 
 
   const handleChange = (e) => {
     if(bError){
       if(e.target["name"] === "username" || e.target["name"] === "password" ){
         setbError(null);
-      }
-      
+      }  
     }
   }
+
+  
 
   return (
     <div className="auth-wrapper">
@@ -85,7 +90,6 @@ export default function Login(){
           {errors.password && <p className="text-red-500">{errors.password.message}</p>}
           {!errors.password && bError && error.data.message.includes("Password") && <p className='text-red-500'>{error.data.message}</p>}
           
-
        
         </div>
         <button type="submit" className="mt-2 btn-login btn btn-primary">Login</button>

@@ -11,7 +11,7 @@ export default function Greeting(){
   if(hours >= 12 && hours < 18){
     greeting = "Good afternoon";
     css.color = "green";
-    css1.color = "yellow"
+    css1.color = "darkblue"
   }else if(hours >= 18 || hours < 6){
     greeting = "Good evening";
     css.color = "orange";

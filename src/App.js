@@ -18,6 +18,7 @@ import PlayQuiz from "./pages/PlayQuiz";
 import ApproveQuizes from './pages/ApproveQuizes';
 
 import NavMenu from './components/component/NavMenu';
+import { GamesProvider } from './contexts/GamesProvider';
 
 
 
@@ -25,6 +26,7 @@ function App() {
  return (
     <AuthProvider>
       <QuizesProvider>
+        <GamesProvider>
         <ScrollToTop/>
         <Router>
         <NavMenu/>
@@ -74,6 +76,7 @@ function App() {
       
           </Switch>
         </Router>    
+        </GamesProvider>
      </QuizesProvider>
     </AuthProvider>
  )

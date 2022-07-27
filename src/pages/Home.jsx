@@ -5,15 +5,16 @@ import Loader from "../components/component/Loader";
 
 export default function Home(){
 
-  const {user, loading} = useSession();
+  const {user, loading, ready} = useSession();
   
-  if(!user || loading) return <Loader />
+  const needLoadingScreen = (! user || loading || !ready);
 
-  return (
-    <>
-    <Greeting/>
-    <Options id={user.id}/>
-    </>
+  return needLoadingScreen? (
+    <Loader/>
+  ):(
+  <>
+  <Greeting/>
+  <Options id={user.id}/>
+  </>
   )
-
 }

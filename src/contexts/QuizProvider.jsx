@@ -64,7 +64,6 @@ const createOrUpdateQuiz = useCallback( async ({id, category, type, difficulty, 
 
 );
 
-
 const deleteQuiz = useCallback( async (id) => {
   try{
     setError();
@@ -79,14 +78,6 @@ const deleteQuiz = useCallback( async (id) => {
   }
   }, [refreshQuizes]
 );
-
-/*
-const setQuizToUpdate  = useCallback( (id) => {
-  setCurrentQuiz(id === null? {} : quizes.find((e) => e.id === id)
-  );
-}, [quizes]
-);
-*/
 
 const value = useMemo( () => ({
   quizes,

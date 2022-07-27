@@ -2,13 +2,13 @@ import {axios} from ".";
 
 
 export const getAllQuiz = async () => {
-  const { data } = await axios.get(`quiz`, {
-    param:{
-      limit: 25,
-      offset: 0,
-    },
-  });
-  
+  const { data } = await axios.get(`quiz`)
+      return data;
+}
+
+
+export const getQuizById = async (id) => {
+  const { data } = await axios.get(`quiz/${id}`);
   return data;
 }
 
