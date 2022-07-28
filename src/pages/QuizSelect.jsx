@@ -50,22 +50,30 @@ export default function SelectQuiz(){
     }
   }, [history, setCurrentQuiz])
 
+  const removeErrors = useCallback(() => {
+    if(error){
+      console.log("yo");
+      setError(null);
+    }
+  },[error])
   
   if(!user || loading || !categories || !difficulties) return <Loader />
 
 
   return(
-    <div className="play-container">
-      <h1>Select a quiz</h1>
+    <div className="select-container">
+      <h2 className='header-select'>Select a quiz</h2>
       <FormProvider {...methods}>
         <form className="quiz-form" onSubmit={handleSubmit(handleShowQuiz)}>
-          <LabelSelect label={"category"} options={categories} required={false}/>
-          <LabelSelect label={"difficulty"} options={difficulties} required={false} />
-          <button type="submit">Play</button>
+          <LabelSelect label={"category"} options={categories} required={false} onClick={removeErrors}/>
+          <LabelSelect label={"difficulty"} options={difficulties} required={false}/>
+          <button type="submit" className='submit-answer'>Play</button>
         </form>
-        {error? <p className="text-red-500">{error}</p> : null}
       </FormProvider>
+      {error? (<p className="text-red-500 bg-white">{error}</p>): (null)}
     </div>
+
+    
   
 
   )

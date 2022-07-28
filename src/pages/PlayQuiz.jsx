@@ -11,19 +11,6 @@ import DynamicButton from "../components/component/DynamicButton";
 
 
 
-function calculatePointsChange(amountOfQuestions, won){
-  switch(amountOfQuestions){
-    case 2:  return (won? 25  : -50);
-    case 3:  return  (won? 50 : -50);
-    case 4: return (won? 100 : -25);
-    default:  return 0;
-  }
-
-
-
-}
-
-
 export default function PlayQuiz() {
   const {currentQuiz } = useQuizes();
  const {createGame}= useGames();
@@ -32,6 +19,7 @@ export default function PlayQuiz() {
   const [answer, setAnswer] = useState(null);  
   const [answers, setAnswers] = useState([]);
   const [played, setPlayed] = useState(false);
+ const [points, setPoints] = useState(null);
 
 
   const history = useHistory();
@@ -47,15 +35,30 @@ export default function PlayQuiz() {
     }
   },[currentQuiz])
 
+
   const handleSubmitAnswer= useCallback (async () => {
     if(answer != null){
       let won = (currentQuiz.correct_answer === answer);
-      await createGame(user.id, currentQuiz.id, calculatePointsChange(answers.length, won));
+
+      const calculatePointsChange = () => {
+        switch(answers.length){
+          case 2:   return (won? 25  : -50);
+          case 3:    return (won? 50 : -50);
+          case 4:  return (won? 100 : -25);
+          default:  return 0;
+        }
+      }
+      setPoints(calculatePointsChange());
+      await createGame(user.id, currentQuiz.id, calculatePointsChange());
       setPlayed(true);
-      console.log(document.getElementById(answer));
+
       document.getElementById(answer).className = `answer answer-${won?"correct":"wrong"}`
+      document.getElementById(answer).insertAdjacentHTML("beforeEnd", `<span className='points-${won? "won":"lost"}'>  (${calculatePointsChange() < 0? calculatePointsChange() : ("+" + calculatePointsChange())})`);
+
     }
   }, [answer, currentQuiz, createGame, user, answers]);
+
+
 
 
   const handleChange = (e) => {
@@ -86,7 +89,7 @@ export default function PlayQuiz() {
           </li>
           )
           })}
-        </ul>
+          <li><label class="total-points">Total Score: {(user.score + points )}</label></li></ul>
       </div>
       <DynamicButton className="submit-answer" transformed={played} onClick={handleSubmitAnswer} href="/select"/>
 

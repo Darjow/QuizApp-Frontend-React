@@ -174,7 +174,7 @@ video {
 .header-quiz-master:hover{
   color: var(--active-color);
 }
-.quiz-container{
+.quiz-container, .select-container{
   background: var(--main-color);
   border-radius: 10px;
   box-shadow: 0 0 10px 2px;
@@ -183,10 +183,23 @@ video {
   margin-top: 2rem;
   color: white;
 }
+.header-select{
+  padding: 1rem;
+  text-align: center;
+  margin: 0;
+}
 .quiz-header  h2, h3{
   padding:1rem;
   text-align: center;
   margin: 0;
+}
+.quiz-form  select{
+  background-color: var(--main-color);
+  width: 45%;
+  border: 1px white solid;
+}
+.quiz-form label{
+  padding: 1rem 3rem;
 }
 .author{
   font-weight: 800;
@@ -209,19 +222,24 @@ video {
 .quiz-header ul li label{
   cursor: pointer;
 }
-.answer{
+.answer, 
+.total-points{
   margin: 0px;
   width: 100%;
   padding: 0.5rem 0rem;
 }
+.total-points{
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
 .answer-active{
   background-color: var(--active-color);
 }
-.answer-wrong{
+.answer-wrong, .points-lost{
   background-color: red;
 }
-.answer-correct{
-  background-color: green !important;
+.answer-correct, .points-won{
+  background-color: green;
 }
 .submit-answer {
   margin-top: 1rem;
@@ -274,7 +292,7 @@ video {
   .card{
     margin: 1rem !important;
   }
-  .quiz-container{
+  .select-container, .quiz-container{
     width: 90%;
   }
 
