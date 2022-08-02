@@ -22,6 +22,7 @@ body {
   font-family: var(--font-family);
   margin-top: 100px;
 }
+
 .button{
   background-color: var(--main-color);
   display: inline-block;

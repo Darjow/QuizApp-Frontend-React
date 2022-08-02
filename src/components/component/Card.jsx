@@ -5,7 +5,7 @@ import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText} from 'mdb-react-ui-kit
 
 
 
-export default function Card({title, text, btn_text, to}){
+export default function Card({title, text, btn_text}){
 
   return (
       <MDBCard>
@@ -15,7 +15,6 @@ export default function Card({title, text, btn_text, to}){
             {text}
           </MDBCardText>
         </MDBCardBody>
-       { /*<a href={to} className="button home_button">{btn_text}</a>*/}
       </MDBCard>
   );
 

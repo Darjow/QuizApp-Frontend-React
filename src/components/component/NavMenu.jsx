@@ -47,7 +47,7 @@ export default function NavMenu() {
             <NavbarLink to="/select"> Play</NavbarLink>
             <NavbarLink to="/create">Create a quiz</NavbarLink>
             <NavbarLink to={user? user.user? `/profile/${user.user.id}`: `/profile/${user.id}`: "/profile"}>Profile</NavbarLink>
-            {adminExtraNav()? ( <NavbarLink to="quizes/approve">Approve quizes</NavbarLink>): <>  </>}
+            {adminExtraNav()? ( <NavbarLink to="/quizes/approve">Approve quizes</NavbarLink>): <>  </>}
             <NavbarLink to="/login" onClick={handleLogout}>Logout</NavbarLink>
             <OpenLinksButton onClick={handleExtendedNavbar}>
               {extendNavbar ? <>&#10005;</> : <> &#8801;</>}

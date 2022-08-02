@@ -14,7 +14,7 @@ export default function Home(){
   ):(
   <>
   <Greeting/>
-  <Options id={user.id}/>
+  <Options/>
   </>
   )
 }

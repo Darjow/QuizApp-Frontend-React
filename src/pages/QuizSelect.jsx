@@ -10,6 +10,7 @@ import {getAllDifficulties} from '../api/difficulties'
 import { getQuizesByCategorieAndDifficulty } from '../api/quiz';
 import { useQuizes } from '../contexts/QuizProvider';
 
+
 export default function SelectQuiz(){
 
   const methods = useForm({reValidateMode:"onChange"});
@@ -21,6 +22,7 @@ export default function SelectQuiz(){
   const [error, setError] = useState(null);
   const {setCurrentQuiz} = useQuizes();
 
+  
   useEffect(() => {    
     const request = async () => {
       if(user){
@@ -32,14 +34,15 @@ export default function SelectQuiz(){
     }
     request();
   }, [user])
+  
 
   const handleShowQuiz = useCallback( async (formdata) => {
     setError(null);
-    const quizes = await getQuizesByCategorieAndDifficulty(formdata.category, formdata.difficulty);
+    let quizes = await getQuizesByCategorieAndDifficulty(formdata.category, formdata.difficulty);
     if(quizes.data.length !== 0){
       let quiz;
       if(quizes.data.length === 1){
-        quiz = quizes.data[0]
+        quiz = quizes.data.data[0]
       }else{
         quiz = quizes.data.data[Math.floor(Math.random() * quizes.data.length)]
       }
@@ -52,12 +55,11 @@ export default function SelectQuiz(){
 
   const removeErrors = useCallback(() => {
     if(error){
-      console.log("yo");
       setError(null);
     }
   },[error])
   
-  if(!user || loading || !categories || !difficulties) return <Loader />
+  if(!user || loading ||!categories || !difficulties ) return <Loader />
 
 
   return(

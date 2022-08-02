@@ -21,14 +21,21 @@ export const QuizesProvider = ({ children }) => {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const [currentQuiz, setCurrentQuiz] = useState({});
+  const [notApprovedQuizes, setNotApprovedQuizes] = useState([]);
+
+
   const {ready: authReady} = useSession();
+
+  
 
   const refreshQuizes = useCallback(async () => {
     try{
       setError();
       setLoading(true);
       const data = await quizApi.getAllQuiz();
+      const data2 = await quizApi.getNotApprovedQuizes();
       setQuizes(data.data);
+      setNotApprovedQuizes(data2.data);
       return data.data;
 
     } catch(error){
@@ -48,21 +55,6 @@ export const QuizesProvider = ({ children }) => {
 
 
 
-const createOrUpdateQuiz = useCallback( async ({id, category, type, difficulty, question, correct_answer, approved, author, incorrect_anwers}) => {
-  setError();
-  setLoading(true);
-  try{
-    await quizApi.safeQuiz({id, category, type, difficulty, question, correct_answer, approved, author, incorrect_anwers});
-    await refreshQuizes();
-  }catch(error){
-    console.log(error);
-    throw error;
-  }finally{
-    setLoading(false);
-  }
-}, [refreshQuizes]
-
-);
 
 const deleteQuiz = useCallback( async (id) => {
   try{
@@ -79,24 +71,44 @@ const deleteQuiz = useCallback( async (id) => {
   }, [refreshQuizes]
 );
 
+const approveQuiz = useCallback( async (id) => {
+
+  try{
+    setError();
+    setLoading(true)
+    const updated = await quizApi.approveQuiz(id);
+    refreshQuizes();
+    return updated;
+  } catch(error){
+    console.log(error);
+    throw error;
+    } finally{
+      setLoading(false);
+    }
+
+}, [refreshQuizes])
+
+
 const value = useMemo( () => ({
   quizes,
   error,
   loading,
   currentQuiz,
-  createOrUpdateQuiz,
   deleteQuiz,
-  setCurrentQuiz
+  setCurrentQuiz,
+  notApprovedQuizes,
+  approveQuiz
+
 }),
 [
   quizes,
   error,
   loading,
   currentQuiz,
-  createOrUpdateQuiz,
   deleteQuiz,
-  setCurrentQuiz
-  //setQuizToUpdate
+  setCurrentQuiz,
+  notApprovedQuizes,
+  approveQuiz
 ]
 );
 

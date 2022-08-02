@@ -32,7 +32,7 @@ export default function PlayQuiz() {
       temp.push(currentQuiz.correct_answer)
       temp = temp.sort(() => (Math.random() > .5) ? 1 : -1);
       setAnswers(temp);
-    }
+  }
   },[currentQuiz])
 
 
@@ -48,12 +48,15 @@ export default function PlayQuiz() {
           default:  return 0;
         }
       }
+
+      document.getElementById(answer).className = `answer answer-${won?"correct":"wrong"}`
+      document.getElementById(answer).insertAdjacentHTML("beforeEnd", `<span className='points-${won? "won":"lost"}'>  (${calculatePointsChange() < 0? calculatePointsChange() : ("+" + calculatePointsChange())})`);
+      
       setPoints(calculatePointsChange());
       await createGame(user.id, currentQuiz.id, calculatePointsChange());
       setPlayed(true);
 
-      document.getElementById(answer).className = `answer answer-${won?"correct":"wrong"}`
-      document.getElementById(answer).insertAdjacentHTML("beforeEnd", `<span className='points-${won? "won":"lost"}'>  (${calculatePointsChange() < 0? calculatePointsChange() : ("+" + calculatePointsChange())})`);
+    
 
     }
   }, [answer, currentQuiz, createGame, user, answers]);
