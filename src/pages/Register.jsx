@@ -36,7 +36,7 @@ const registerMethod = useRegister();
 
 return (
   <div className="auth-wrapper">
-      <Link className="home-redirect" to="/">Quiz-Master</Link>
+      <a className="login-quiz-master title" href="/">Quiz-Master</a>
     <div className="auth-inner">
     <form className="register-form" onSubmit={handleSubmit(handleRegister)}>
       <h3>Register</h3>

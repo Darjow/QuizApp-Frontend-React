@@ -20,7 +20,7 @@ const Type = {
   2: "True/False"
 }
 const Difficulty = {
-  0: "any",
+  0: "Any",
   1: "easy",
   2: "medium",
   3: "hard"

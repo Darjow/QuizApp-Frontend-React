@@ -13,7 +13,7 @@ import { useQuizes } from '../contexts/QuizProvider';
 
 export default function SelectQuiz(){
 
-  const methods = useForm({reValidateMode:"onChange"});
+  const methods = useForm();
   const {handleSubmit} = methods;
   const {user, loading} = useSession();
   const history = useHistory();
@@ -25,15 +25,14 @@ export default function SelectQuiz(){
   
   useEffect(() => {    
     const request = async () => {
-      if(user){
         const difficulties = await getAllDifficulties();
         setDifficulties(difficulties);
         const categories = await getAllCategories ();
         setCategories(categories );
       }
-    }
+    
     request();
-  }, [user])
+  }, [])
   
 
   const handleShowQuiz = useCallback( async (formdata) => {

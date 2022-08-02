@@ -51,7 +51,7 @@ a:hover{
   color: var(--active-color) ;
 }
 
-.greeting-container{
+.blue-container{
   width: 100%;
   height: 20vh;
   display: flex;
@@ -60,12 +60,18 @@ a:hover{
   margin-top: 2rem;
 
 }
-.greeting{
+.blue-component{
   padding: 2rem;
   background-color: var(--main-color);
   color: var(--active-color);
   border-radius: 20px;
   color: white;
+}
+table,th,tr,td{
+  background-color: var(--main-color);
+  color: white;
+  font-size: large;
+  border: solid white 1px !important;
 }
 .card{
   border: none !important;

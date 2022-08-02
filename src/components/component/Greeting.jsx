@@ -24,8 +24,8 @@ export default function Greeting(){
 
   const {user} = useSession();
   return(
-    <div className="greeting-container">
-      <h1 className="greeting" style={css1}>{greeting}, <span style={css}>{user.username}</span></h1>
+    <div className="blue-container">
+      <h1 className="blue-component" style={css1}>{greeting}, <span style={css}>{user.username}</span></h1>
       </div>
   )
 }

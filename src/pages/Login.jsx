@@ -3,12 +3,11 @@ import {useForm} from 'react-hook-form';
 import { useCallback} from 'react';
 import { useLogin, useSession } from '../contexts/AuthProvider';
 import { useState } from 'react';
-import Loader from '../components/component/Loader';
 
 
 
 export default function Login(){
-  const {register, handleSubmit,formState: { errors } ,clearErrors}= useForm({reValidateMode:"onChange"})
+  const {register, handleSubmit,formState: { errors } ,clearErrors}= useForm()
   const history = useHistory();
   const {error} = useSession();
   const [bError, setbError] = useState("");
@@ -24,7 +23,6 @@ export default function Login(){
       if(check){
         history.replace("/home");
       }else{
-        //setbError(error);
         setbError("wrong credentials")
       }
 
@@ -43,7 +41,7 @@ export default function Login(){
 
   return (
     <div className="auth-wrapper">
-      <h1 className="login-quiz-master title" to="/">Quiz-Master</h1>
+      <a className="login-quiz-master title" href="/">Quiz-Master</a>
       <div className="auth-inner">
       <form className="login-form" onSubmit={handleSubmit(handleLogin)}>
         <h3>Sign In</h3>
