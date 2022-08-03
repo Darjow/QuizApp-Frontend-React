@@ -27,6 +27,7 @@ export default function PlayQuiz() {
 
   const positionAnswers = useEffect(()  => {
     let temp = [];
+
     if(Object.keys(currentQuiz).length !== 0){
       temp = currentQuiz.incorrect_answers;
       temp.push(currentQuiz.correct_answer)

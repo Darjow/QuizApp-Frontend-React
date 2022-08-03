@@ -1,5 +1,4 @@
 const Categories = {
-  0: 'Any',
   1: 'General Knowledge',
   2: 'Entertainment',
   3: 'Nature',
@@ -15,17 +14,22 @@ const Categories = {
   13: 'Vehicles',
 }
 
-const Type = {
-  1: "Multiple",
-  2: "True/False"
-}
-const Difficulty = {
-  0: "Any",
+const Difficulties = {
   1: "easy",
   2: "medium",
   3: "hard"
 }
 
+
+const toSelectList = (obj) => {
+  let arr = [];
+  Object.keys(obj).map(e => {
+    arr.push({id: e, name: obj[e]})
+  })
+  return arr;
+}
+
+
 module.exports = {
-  Categories, Type, Difficulty
+  Categories, Difficulties, toSelectList
 }

@@ -1,7 +1,6 @@
 import Button from '@mui/material/Button';
 import { useQuizes } from '../../contexts/QuizProvider';
-const _enum = require("../../core/enum")
-
+import { Difficulties, Categories } from '../../util/Enum';
 export default function QuizList() {
 
   const {deleteQuiz, notApprovedQuizes, approveQuiz} = useQuizes();
@@ -39,13 +38,13 @@ export default function QuizList() {
         return (
           <tr>
             <td className='text-center'> {quiz.question}</td>
-            <td className="text-center">{_enum.Categories[quiz.category_id]}</td>
+            <td className="text-center">{Categories[quiz.category_id]}</td>
             <td className="text-center">{quiz.type}</td>
-            <td className="text-center">{_enum.Difficulty[quiz.difficulty_id]}</td>
+            <td className="text-center">{Categories[quiz.difficulty_id]}</td>
             <td className="text-center">{quiz.correct_answer}</td>
             <td className="text-center px-6">1. {quiz.incorrect_answers[0]}</td>
             <td className="text-center px-6">2. {quiz.incorrect_answers[1]}</td>
-            <td className="text-center px-6">{quiz.incorrect_answers[2]? `3. ${quiz.incorrect_answers[2]}hhhhhhh` : ""}</td>
+            <td className="text-center px-6">{quiz.incorrect_answers[2]? `3. ${quiz.incorrect_answers[2]}` : ""}</td>
             <td className="text-center border-solid border-r-3">{quiz.author}</td>
             <td className='bg-white'><Button className='w-full' variant='contained' color='success' size='small' id={quiz.id} onClick={handleApprove}>Approve</Button></td>
             <td className='bg-white'><Button className='w-full' variant='contained' color='error' size="small" id={quiz.id}  onClick={handleDeny}>Deny</Button></td>

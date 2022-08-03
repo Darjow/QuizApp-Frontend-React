@@ -89,6 +89,21 @@ const approveQuiz = useCallback( async (id) => {
 }, [refreshQuizes])
 
 
+const createQuiz = useCallback( async ({...quiz}  ) => {
+  try{
+      setError();
+      setLoading(true)
+      const newQuiz = await quizApi.create(quiz);
+      refreshQuizes();
+      return newQuiz;
+  } catch(error){
+    console.log(error);
+    throw error;
+    } finally{
+      setLoading(false);
+    }
+},[refreshQuizes])
+
 const value = useMemo( () => ({
   quizes,
   error,
@@ -97,7 +112,8 @@ const value = useMemo( () => ({
   deleteQuiz,
   setCurrentQuiz,
   notApprovedQuizes,
-  approveQuiz
+  approveQuiz,
+  createQuiz
 
 }),
 [
@@ -108,7 +124,8 @@ const value = useMemo( () => ({
   deleteQuiz,
   setCurrentQuiz,
   notApprovedQuizes,
-  approveQuiz
+  approveQuiz,
+  createQuiz
 ]
 );
 

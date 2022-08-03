@@ -81,7 +81,7 @@ export default function Login(){
               }
               })}
             className="form-control"
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(handleLogin)}
             onKeyDown={handleChange}
           />
 

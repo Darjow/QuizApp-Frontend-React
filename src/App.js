@@ -12,8 +12,8 @@ import NotFound from './pages/NotFound';
 import Register from './pages/Register';
 import Welcome from './pages/Welcome';
 import Profile from "./pages/Profile";
-import Create from "./pages/Create"
-import SelectQuiz from './pages/QuizSelect'; 
+import Create from "./pages/CreateQuiz"
+import SelectQuiz from './pages/SelectQuiz'; 
 import PlayQuiz from "./pages/PlayQuiz";
 import ApproveQuizes from './pages/ApproveQuizes';
 

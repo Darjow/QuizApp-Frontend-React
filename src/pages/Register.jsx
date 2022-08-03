@@ -71,7 +71,7 @@ return (
             onKeyDown={handleErrors}
           />
           {errors.username && <p className="text-red-500">{errors.username.message}</p>}
-          { error && error.data.message.toLowerCase().includes("username") && <p className="text-red-500">Username already in use.</p> }
+          {error && error.data.message.toLowerCase().includes("username") && <p className="text-red-500">Username already in use.</p> }
         </div>
 
 

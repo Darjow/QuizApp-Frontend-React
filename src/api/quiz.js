@@ -13,19 +13,14 @@ export const getQuizById = async (id) => {
 }
 
 
-export const safeQuiz = async ({id, category, type, difficulty, question, correct_answer, author, incorrect_answers }) => {
-  const {data} = await axios.get({
-    method: id? "put": "post",
-    url:`quiz/${id ?? ""}`,
-    data:{
-      category,
-      type,
-      difficulty,
+export const create = async ({category_id, difficulty_id, question, correct_answer, author, incorrect_answers}) => {
+  const {data} = await axios.post(`quiz/`,{
+      category_id,
+      difficulty_id,
       question,
       correct_answer,
       author,
       incorrect_answers
-    }
   });
   return data;
 }

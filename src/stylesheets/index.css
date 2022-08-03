@@ -58,6 +58,7 @@ a:hover{
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
+  margin: auto;
 
 }
 .blue-component{
@@ -200,12 +201,17 @@ video {
   text-align: center;
   margin: 0;
 }
-.quiz-form  select{
+
+
+.quiz-form  input,
+.quiz-form select{
   background-color: var(--main-color);
-  width: 45%;
+  width: 40%;
   border: 1px white solid;
+  color: white !important;
 }
 .quiz-form label{
+  width:40%;
   padding: 1rem 3rem;
 }
 .author{
@@ -268,7 +274,6 @@ video {
 
 
 
-
 @media screen and (max-width: 767px) {
 
    
@@ -319,6 +324,8 @@ video {
   .auth-inner{
     width: 450px;
   }
+
+
 
 
 }

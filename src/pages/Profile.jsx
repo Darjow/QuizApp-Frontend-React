@@ -12,9 +12,9 @@ export default function Profile(){
     return (<Loader/>)
   }else{
 
-  const won = games.filter(e => e.score > 0).length;
+  const won = games.filter(e => e.score > 0 && e.player_id === user.id).length;
   const played = games.filter(e => e.player_id === user.id).length;
-  const percentage_won = (100 / played * won).toFixed(2)
+  const percentage_won = played !== 0?  (100 / played * won).toFixed(2): 0
   const score = user.score;
 
 
