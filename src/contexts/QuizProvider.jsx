@@ -23,6 +23,8 @@ export const QuizesProvider = ({ children }) => {
   const [currentQuiz, setCurrentQuiz] = useState({});
   const [notApprovedQuizes, setNotApprovedQuizes] = useState([]);
 
+  const {hasRole} = useSession();
+
 
   const {ready: authReady} = useSession();
 
@@ -33,9 +35,11 @@ export const QuizesProvider = ({ children }) => {
       setError();
       setLoading(true);
       const data = await quizApi.getAllQuiz();
-      const data2 = await quizApi.getNotApprovedQuizes();
+      if(hasRole("admin")){
+        const data2 = await quizApi.getNotApprovedQuizes();
+        setNotApprovedQuizes(data2.data);
+      }
       setQuizes(data.data);
-      setNotApprovedQuizes(data2.data);
       return data.data;
 
     } catch(error){
@@ -95,7 +99,7 @@ const createQuiz = useCallback( async ({...quiz}  ) => {
       setLoading(true)
       const newQuiz = await quizApi.create(quiz);
       refreshQuizes();
-      return newQuiz;
+      return true;
   } catch(error){
     console.log(error);
     throw error;

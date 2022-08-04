@@ -8,6 +8,8 @@ import { Button } from "../components/component/Button";
 import Loader from "../components/component/Loader";
 import { toSelectList } from "../util/Enum";
 import { Difficulties, Categories } from "../util/Enum";
+import { SuccessToast, ErrorToast } from "../util/Toast";
+import { useHistory } from "react-router";
 
 const validationRules = {
   question: {required: "This is required", minLength: {value: 10, message: "Min length is 10" }, maxLength: {value: 150, message: "Max length is 50"}},
@@ -29,6 +31,7 @@ export default function CreateQuiz(){
   const {handleSubmit} = methods;
   const {createQuiz} = useQuizes();
   const {user} = useSession();
+  const history = useHistory();
 
 
   const onSubmit = useCallback( async (data) => {
@@ -52,10 +55,14 @@ export default function CreateQuiz(){
         incorrect_answers: incorrect_answs,
         author: user.username,        
       });
+      SuccessToast("Succesfully created a new quiz.")
+      history.push("/");
+
     }catch(ex){
       console.log(ex);
+      ErrorToast("Error creating a new quiz.")
     }
-  },[createQuiz, user])
+  },[createQuiz, user, history])
 
   if(!user){
     return <Loader/>
