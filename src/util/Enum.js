@@ -1,4 +1,4 @@
-const Categories = {
+const Categories = {  
   1: 'General Knowledge',
   2: 'Entertainment',
   3: 'Nature',
@@ -24,7 +24,7 @@ const Difficulties = {
 const toSelectList = (obj) => {
   let arr = [];
   Object.keys(obj).map(e => {
-    arr.push({id: e, name: obj[e]})
+    arr.push({id: obj[e], name: obj[e]})
   })
   return arr;
 }

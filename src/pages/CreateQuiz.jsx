@@ -61,8 +61,8 @@ export default function CreateQuiz(){
 
       await createQuiz({
         question: question,
-        category_id: data.Category,
-        difficulty_id: data.Difficulty,
+        category: data.Category,
+        difficulty: data.Difficulty,
         correct_answer: data["Correct Answer"],
         incorrect_answers: incorrect_answs,
         author: user.username,        

@@ -13,10 +13,10 @@ export const getQuizById = async (id) => {
 }
 
 
-export const create = async ({category_id, difficulty_id, question, correct_answer, author, incorrect_answers}) => {
+export const create = async ({category, difficulty, question, correct_answer, author, incorrect_answers}) => {
   const {data} = await axios.post(`quiz/`,{
-      category_id,
-      difficulty_id,
+      category,
+      difficulty,
       question,
       correct_answer,
       author,
@@ -30,11 +30,13 @@ export const deleteQuiz = async (id) => {
 
 }
 export const getQuizesByCategorieAndDifficulty = async (category, difficulty) => {
-  return await axios.get(`quiz/${category}/${difficulty}`)
+  const {data} = await axios.get(`quiz/${category}/${difficulty}`)
+  return data;
 }
 
 export const getNotApprovedQuizes = async () => {
-  return await axios.get(`quiz/admin`);
+  const data =  axios.get(`quiz/admin`);
+  return data;
 }
 
 

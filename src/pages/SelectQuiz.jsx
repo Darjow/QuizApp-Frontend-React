@@ -19,18 +19,22 @@ export default function SelectQuiz(){
   const handleShowQuiz = useCallback( async (formdata) => {
     setError(null);
     let quizes = await getQuizesByCategorieAndDifficulty(formdata.category, formdata.difficulty);
-    if(quizes.data.data.length !== 0){
-      let quiz;
-      if(quizes.data.data.length === 1){
-        quiz = quizes.data.data[0]
+    
+    let quiz;
+
+      if(quizes.data.length !== 0){
+        if(quizes.data.length === 1){
+          quiz = quizes.data[0]
+        }else{
+          quiz = quizes.data[Math.floor(Math.random() * quizes.data.length)]
+        }
+        setCurrentQuiz(quiz);
+        history.push(`/play`)
       }else{
-        quiz = quizes.data.data[Math.floor(Math.random() * quizes.data.length)]
+        setError("No quizes found with these parameters.")
       }
-      setCurrentQuiz(quiz);
-      history.push(`/play`)
-    }else{
-      setError("No quizes found with these parameters.")
-    }
+    
+    
   }, [history, setCurrentQuiz])
 
   const removeErrors = useCallback(() => {
@@ -39,7 +43,6 @@ export default function SelectQuiz(){
     }
   },[error])
   
-
   return(
     <div className="select-container">
       <h2 className='header-select'>Select a quiz</h2>

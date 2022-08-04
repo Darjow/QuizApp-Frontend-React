@@ -9,7 +9,7 @@ const LabelSelect = ({label, options, validation = {}, required, className}) => 
         {...register(label, validation)}
         id={label}
         name={label}>
-        <option value={required?"" : "0"}>{required? "" : "Any"}</option>
+        <option value={required?"" : "*"}>{required? "" : "Any"}</option>
         {options.map((value) => (
           <option key={value.id} value={value.id} >
             {value.name}

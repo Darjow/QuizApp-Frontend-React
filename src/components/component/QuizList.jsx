@@ -13,6 +13,7 @@ export default function QuizList() {
     }
     refresh();
   },[refreshQuizes])
+  
 
   const handleApprove = async (e) => {
    await approveQuiz(e.target.id);
@@ -22,6 +23,7 @@ export default function QuizList() {
   const handleDeny = async (e) => {
     await deleteQuiz(e.target.id);
   }
+
 
   if(notApprovedQuizes.length === 0){
      return (<p className="mt-10 ml-10">No quizes are waiting for approval.</p>)
@@ -33,7 +35,6 @@ export default function QuizList() {
       <tr>
         <th className='text-center px-6'>Question</th>
         <th className='text-center px-6'>Category</th>
-        <th className='text-center px-6'>Type</th>
         <th className='text-center px-6'>Difficulty</th>
         <th className='text-center px-6'>Correct Answer</th>
         <th className='text-center px-6' colSpan={3}>Incorrect Answers</th>
@@ -48,7 +49,6 @@ export default function QuizList() {
           <tr>
             <td className='text-center'> {quiz.question}</td>
             <td className="text-center">{Categories[quiz.category_id]}</td>
-            <td className="text-center">{quiz.type}</td>
             <td className="text-center">{Difficulties[quiz.difficulty_id]}</td>
             <td className="text-center">{quiz.correct_answer}</td>
             <td className="text-center px-6">{quiz.incorrect_answers[0]}</td>

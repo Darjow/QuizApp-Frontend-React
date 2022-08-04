@@ -97,7 +97,7 @@ const createQuiz = useCallback( async ({...quiz}  ) => {
   try{
       setError();
       setLoading(true)
-      const newQuiz = await quizApi.create(quiz);
+      await quizApi.create(quiz);
       refreshQuizes();
       return true;
   } catch(error){
