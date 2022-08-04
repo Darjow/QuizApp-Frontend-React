@@ -1,19 +1,24 @@
 import {Link, useHistory} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import { useCallback} from 'react';
-import { useLogin, useSession } from '../contexts/AuthProvider';
+import { useLogin, useSession} from '../contexts/AuthProvider';
 import { useState } from 'react';
 
 
 
+
+
 export default function Login(){
-  const {register, handleSubmit,formState: { errors } ,clearErrors}= useForm()
+  const methods = useForm();
+  const {handleSubmit, clearErrors, formState:{errors}, register} = methods;
   const history = useHistory();
-  const {error} = useSession();
   const [bError, setbError] = useState("");
+  const {error} = useSession();
+
+
+
 
   const login = useLogin();
-
 
   
     const handleLogin = useCallback(async ({username, password}) => {
@@ -21,7 +26,7 @@ export default function Login(){
       clearErrors();
       const check = await login(username, password);
       if(check){
-        history.replace("/home");
+        history.push("/home");
       }else{
         setbError("wrong credentials")
       }
@@ -31,14 +36,13 @@ export default function Login(){
 
   const handleChange = (e) => {
     if(bError){
-      if(e.target["name"] === "username" || e.target["name"] === "password" ){
+      if(e.target["name"] === "Username" || e.target["name"] === "Password" ){
         setbError(null);
       }  
     }
   }
 
   
-
   return (
     <div className="auth-wrapper">
       <a className="login-quiz-master title" href="/">Quiz-Master</a>
@@ -97,7 +101,5 @@ export default function Login(){
       </div>
   
     )
-  }
-
-
-
+          
+            }

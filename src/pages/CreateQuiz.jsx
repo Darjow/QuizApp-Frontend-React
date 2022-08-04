@@ -11,28 +11,40 @@ import { Difficulties, Categories } from "../util/Enum";
 import { SuccessToast, ErrorToast } from "../util/Toast";
 import { useHistory } from "react-router";
 
-const validationRules = {
-  question: {required: "This is required", minLength: {value: 10, message: "Min length is 10" }, maxLength: {value: 150, message: "Max length is 50"}},
-  category:{required: "This is required"},   
-  difficulty: {required: "This is required"},
-  incorrect_answers_required: {required: "This is required", maxLength: {value: 25, message: "Max length is 25."}},
-  incorrect_answers_not_required: {maxLength: {value: 25, message: "Max length is 25."}},
-  correct_answer: {required: "This is required", maxLength:{value: 25, message: "Max length is 50"}},
-}
-
-
-
 
 
 export default function CreateQuiz(){
 
   const methods = useForm();
 
-  const {handleSubmit} = methods;
+  const {handleSubmit, getValues} = methods;
   const {createQuiz} = useQuizes();
   const {user} = useSession();
   const history = useHistory();
 
+
+
+  const validationRules = {
+    question: {required: "This is required", minLength: {value: 10, message: "The question is too small" }, maxLength: {value: 150, message: "The question is too long"}},
+    category:{required: "Required"},   
+    difficulty: {required: "Required"},
+    incorrect_answers_required: {required: "Required", maxLength: {value: 25, message: "The answer is too long."}, validate: {
+      notIdentical: value => {
+        return getValues("False Answer 2") !== value && getValues("False Answer 3") !== value? null : "False answers cannot be the same"
+      }
+    }},
+    incorrect_answers_not_required: {maxLength: {value: 25, message: "The answer is too long"}, validate: {
+      notIdentical: value => {
+        return value === ""? null : getValues("False Answer 2") !== getValues("False Answer 3")?  null: "False answers cannot be the same"
+      }
+    }},
+    correct_answer: {required: "Required", maxLength:{value: 25, message: "The answer is too long"}, validate:{
+      notIdentical: value => {
+        return getValues("False Answer 1") !== value && getValues("False Answer 2") !== value && getValues("False Answer 3") !== value? null :  "Correct answer is the same as a false answer"  }}}
+}
+  
+  
+  
 
   const onSubmit = useCallback( async (data) => {
     try{
@@ -69,6 +81,7 @@ export default function CreateQuiz(){
   }else{
   return(
     <div className="select-container">
+        <h2 className="header-select">Create a quiz</h2>
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)} className="quiz-form">
           <div>
@@ -118,13 +131,8 @@ export default function CreateQuiz(){
             value={user.username}
             disabled
           />
-
-          <div className="col-span-12 sm:col-span-6">
-            <div className="flex justify-end">
-              <Button type="submit" onClick={handleSubmit(onSubmit)} text="Add quiz" className="submit-answer"/>
-            </div>  
-          </div>    
-        </div>
+          <Button type="submit" onClick={handleSubmit(onSubmit)} text="Add quiz" className="submit-answer"/>
+        </div>  
       </form>
     </FormProvider>
   </div>

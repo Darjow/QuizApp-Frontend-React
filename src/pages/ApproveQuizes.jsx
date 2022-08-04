@@ -6,7 +6,7 @@ export default function ApproveQuizes(){
   const {user, loading, ready} = useSession();
   
   
-  const needLoadingScreen = (!user || loading || !ready /*|| !notApprovedQuizes*/);
+  const needLoadingScreen = (!user || loading || !ready);
 
     if(needLoadingScreen){
       return (<Loader/>)
