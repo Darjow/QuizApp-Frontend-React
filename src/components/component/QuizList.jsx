@@ -40,7 +40,7 @@ export default function QuizList() {
             <td className='text-center'> {quiz.question}</td>
             <td className="text-center">{Categories[quiz.category_id]}</td>
             <td className="text-center">{quiz.type}</td>
-            <td className="text-center">{Categories[quiz.difficulty_id]}</td>
+            <td className="text-center">{Difficulties[quiz.difficulty_id]}</td>
             <td className="text-center">{quiz.correct_answer}</td>
             <td className="text-center px-6">1. {quiz.incorrect_answers[0]}</td>
             <td className="text-center px-6">2. {quiz.incorrect_answers[1]}</td>
