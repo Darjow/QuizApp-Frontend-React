@@ -48,7 +48,7 @@ export const QuizesProvider = ({ children }) => {
     }finally{
       setLoading(false);
     }
-  }, []);
+  }, [hasRole]);
 
   useEffect(() => {
     if(authReady && !initialLoad){
@@ -117,7 +117,9 @@ const value = useMemo( () => ({
   setCurrentQuiz,
   notApprovedQuizes,
   approveQuiz,
-  createQuiz
+  createQuiz,
+  refreshQuizes
+  
 
 }),
 [
@@ -129,7 +131,8 @@ const value = useMemo( () => ({
   setCurrentQuiz,
   notApprovedQuizes,
   approveQuiz,
-  createQuiz
+  createQuiz,
+  refreshQuizes
 ]
 );
 
