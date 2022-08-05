@@ -86,8 +86,8 @@ export const AuthProvider = ({children}) =>{
 
 
   useEffect(() => {
-    setSession(token, user);
-  }, [token, user, setSession]);
+    setSession(token);
+  }, [token, setSession]);
 
   const login = useCallback(async (email,password) => {
     try{

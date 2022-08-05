@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom"
-
 export default function DynamicButton({transformed, onClick, href, className}){
   if(transformed){
     return (

@@ -5,7 +5,6 @@ import { useCallback } from "react";
 import { useSession } from "../contexts/AuthProvider";
 import LabelInput from "../components/component/LabelInput";
 import { Button } from "../components/component/Button";
-import Loader from "../components/component/Loader";
 import { toSelectList } from "../util/Enum";
 import { Difficulties, Categories } from "../util/Enum";
 import { SuccessToast, ErrorToast } from "../util/Toast";
@@ -49,7 +48,6 @@ export default function CreateQuiz(){
   const onSubmit = useCallback( async (data) => {
     try{
 
-      console.log(data);
       let incorrect_answs = [];
       for (let i = 1; i <= 3; i++){
         if(data[`False Answer ${i}`] !== ""){
@@ -78,9 +76,7 @@ export default function CreateQuiz(){
     }
   },[createQuiz, user, history])
 
-  if(!user){
-    return <Loader/>
-  }else{
+ 
   return(
     <div className="select-container">
         <h2 className="header-select">Create a quiz</h2>
@@ -133,14 +129,14 @@ export default function CreateQuiz(){
             label="False Answer 3"
             type="text"
             validation={validationRules.incorrect_answers_not_required}
-            data-cy="false_answer_2-input"
+            data-cy="false_answer_3-input"
           />
           <LabelInput
             label="Author"
             type="text"
             value={user.username}
             disabled
-            data-cy="false_answer_3-input"
+            data-cy="author-input"
           />
           <Button type="submit" onClick={handleSubmit(onSubmit)} text="Add quiz" className="submit-answer" data-cy="submit-create_quiz"/>
         </div>  
@@ -148,7 +144,7 @@ export default function CreateQuiz(){
     </FormProvider>
   </div>
 )
-}
+
 }
 
 

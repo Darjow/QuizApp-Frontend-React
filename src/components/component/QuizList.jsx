@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 import { useEffect } from 'react';
 import { useQuizes } from '../../contexts/QuizProvider';
-import { Difficulties, Categories } from '../../util/Enum';
+
 export default function QuizList() {
 
   const {deleteQuiz, notApprovedQuizes, approveQuiz, refreshQuizes} = useQuizes();
@@ -14,7 +14,7 @@ export default function QuizList() {
     refresh();
   },[refreshQuizes])
   
-
+  
   const handleApprove = async (e) => {
    await approveQuiz(e.target.id);
 
@@ -29,16 +29,16 @@ export default function QuizList() {
      return (<p className="mt-10 ml-10">No quizes are waiting for approval.</p>)
   }else{
     return(
-  <div className="overflow-auto mt-10">
-    <table className="sm:table-auto table-fixed m-auto w-screen">
+  <div className="overflow-x-auto mt-5">
+    <table className="table table-responsive">
     <thead className='border-solid border-3 border-white'>
       <tr>
-        <th className='text-center px-6'>Question</th>
-        <th className='text-center px-6'>Category</th>
-        <th className='text-center px-6'>Difficulty</th>
-        <th className='text-center px-6'>Correct Answer</th>
-        <th className='text-center px-6' colSpan={3}>Incorrect Answers</th>
-        <th className='text-center px-6'>Author</th>
+        <th className='text-center'>Question</th>
+        <th className='text-center'>Category</th>
+        <th className='text-center'>Difficulty</th>
+        <th className='text-center'>Correct Answer</th>
+        <th className='text-center' colSpan={3}>Incorrect Answers</th>
+        <th className='text-center'>Author</th>
         <th className='bg-white'colSpan={2}/>
         
     </tr>
@@ -46,7 +46,7 @@ export default function QuizList() {
     <tbody>
       {notApprovedQuizes.map((quiz) => {
         return (
-          <tr>
+          <tr data-cy="quiz">
             <td className='text-center' data-cy="quiz_question"> {quiz.question}</td>
             <td className="text-center"data-cy="quiz_category">{quiz.category}</td>
             <td className="text-center"data-cy="quiz_difficulty">{quiz.difficulty}</td>

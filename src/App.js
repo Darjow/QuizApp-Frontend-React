@@ -1,6 +1,6 @@
 import './stylesheets/App.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import {Switch, Route,Redirect ,BrowserRouter as Router} from 'react-router-dom';
+import {Switch, Route ,BrowserRouter as Router} from 'react-router-dom';
 import ScrollToTop from './components/functions/ScrollToTop';
 import { AuthProvider} from './contexts/AuthProvider';
 import { QuizesProvider } from './contexts/QuizProvider';
@@ -19,6 +19,8 @@ import ApproveQuizes from './pages/ApproveQuizes';
 
 import NavMenu from './components/component/NavMenu';
 import { GamesProvider } from './contexts/GamesProvider';
+import RedirectRoute from './components/route/RedirectRoute';
+import GuestRoute from './components/route/GuestRoute';
 
 
 
@@ -32,44 +34,45 @@ function App() {
         <NavMenu/>
           <Switch>
             <Route exact path="/">
-              <Redirect to="/welcome"/>
+              <RedirectRoute/>
             </Route> 
-            <PrivateRoute exact path="/home" loggedIn={true} toIf="/login">
+
+            <PrivateRoute exact path="/home">
               <Home/>
             </PrivateRoute>
 
-            <PrivateRoute exact path="/welcome" loggedIn={false} toIf="/home">
+            <GuestRoute exact path="/welcome">
               <Welcome/>
-            </PrivateRoute>
+            </GuestRoute>
 
-            <PrivateRoute exact path="/login" loggedIn={false} toIf="/home">
+            <GuestRoute exact path="/login">
               <Login/>
+            </GuestRoute>
+
+            <GuestRoute exact path="/register">
+              <Register/>
+            </GuestRoute>
+  
+            <PrivateRoute exact path="/select">
+              <SelectQuiz/>
             </PrivateRoute>
 
-            <PrivateRoute exact path="/register" loggedIn={false} toIf="/home">
-              <Register/>
-              </PrivateRoute>
-  
-              <PrivateRoute exact path="/select" loggedIn={true} toIf="/login">
-                <SelectQuiz/>
-              </PrivateRoute>
+            <PrivateRoute exact path="/play">
+              <PlayQuiz/>
+            </PrivateRoute>
 
-              <PrivateRoute exact path="/play" loggedIn={true} toIf="/login">
-                <PlayQuiz/>
-              </PrivateRoute>
+            <PrivateRoute exact path="/profile/:id">
+              <Profile/>
+            </PrivateRoute>
 
-              <PrivateRoute exact path="/profile/:id" loggedIn={true} toIf = "/login">
-                <Profile/>
-              </PrivateRoute>
+            <PrivateRoute exact path="/create">
+              <Create />
+            </PrivateRoute>
 
-              <PrivateRoute exact path="/create" loggedIn={true} toIf = "/login">
-                <Create />
-              </PrivateRoute>
-
-              <PrivateRoute exact path="/quizes/approve" role="admin" toIf="/home">
-                <ApproveQuizes/>
-              </PrivateRoute>
-            
+            <PrivateRoute exact path="/quizes/approve" role="admin" toIf={"/"}>
+              <ApproveQuizes/>
+            </PrivateRoute>
+          
             <Route path="*">
               <NotFound/>
             </Route>

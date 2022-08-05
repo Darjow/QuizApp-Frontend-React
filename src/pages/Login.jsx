@@ -7,7 +7,6 @@ import { useState } from 'react';
 
 
 
-
 export default function Login(){
   const methods = useForm();
   const {handleSubmit, clearErrors, formState:{errors}, register} = methods;
@@ -41,65 +40,65 @@ export default function Login(){
       }  
     }
   }
+    return (
+      <div className="auth-wrapper">
+        <a className="login-quiz-master title" href="/">Quiz-Master</a>
+        <div className="auth-inner">
+        <form className="login-form" onSubmit={handleSubmit(handleLogin)}>
+          <h3>Sign In</h3>
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+            data-cy="username-input"
+              type="text" name="username" id="username"
+              {...register('username',{ 
+                required:{
+                  value:true,
+                  message:"Please fill in your username."
+                },
+                maxLength:{
+                  value:20, 
+                  message:"Invalid username."
+                  }})}
+              className="form-control"
+              onSubmit={handleSubmit(handleLogin)}
+              onKeyDown={handleChange}
+            /> 
+            {errors.username && <p className="text-red-500">{errors.username.message}</p>}
+            {!errors.username  && bError && error.data.message.includes("Username") && <p className='text-red-500'>{error.data.message}</p>}
 
-  
-  return (
-    <div className="auth-wrapper">
-      <a className="login-quiz-master title" href="/">Quiz-Master</a>
-      <div className="auth-inner">
-      <form className="login-form" onSubmit={handleSubmit(handleLogin)}>
-        <h3>Sign In</h3>
+          </div>
         <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <input
-            type="text" name="username" id="username"
-            {...register('username',{ 
-              required:{
-                value:true,
-                message:"Please fill in your username."
-               },
-               maxLength:{
-                 value:20, 
-                 message:"Invalid username."
-                }})}
-            className="form-control"
-            onSubmit={handleSubmit(handleLogin)}
-            onKeyDown={handleChange}
-          /> 
-          {errors.username && <p className="text-red-500">{errors.username.message}</p>}
-          {!errors.username  && bError && error.data.message.includes("Username") && <p className='text-red-500'>{error.data.message}</p>}
+            <label htmlFor="password">Password</label>
+            <input
+            data-cy="password-input"
+              type="password" name="password" id="password"
+              {...register('password', {
+                required:{
+                  value:true,
+                  message:"Please fill in a password."
+                },
+                minLength:{
+                  value:8,
+                  message:"Password must be minimum 8 characters long."
+                }
+                })}
+              className="form-control"
+              onSubmit={handleSubmit(handleLogin)}
+              onKeyDown={handleChange}
+            />
 
+            {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+            {!errors.password && bError && error.data.message.includes("Password") && <p className='text-red-500'>{error.data.message}</p>}
+            
+        
+          </div>
+          <button data-cy="submit-login" type="submit" className="mt-2 btn-login btn btn-primary">Login</button>
+          <p className="no-account text-right">No account yet?<br/> <Link to="/register" className="text-primary">Click Here</Link> to sign up</p>
+        </form>
         </div>
-      <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password" name="password" id="password"
-            {...register('password', {
-              required:{
-                value:true,
-                message:"Please fill in a password."
-              },
-              minLength:{
-                value:8,
-                message:"Password must be minimum 8 characters long."
+        </div>
+    
+      )
               }
-              })}
-            className="form-control"
-            onSubmit={handleSubmit(handleLogin)}
-            onKeyDown={handleChange}
-          />
-
-          {errors.password && <p className="text-red-500">{errors.password.message}</p>}
-          {!errors.password && bError && error.data.message.includes("Password") && <p className='text-red-500'>{error.data.message}</p>}
-          
-       
-        </div>
-        <button type="submit" className="mt-2 btn-login btn btn-primary">Login</button>
-        <p className="no-account text-right">No account yet?<br/> <Link to="/register" className="text-primary">Click Here</Link> to sign up</p>
-      </form>
-      </div>
-      </div>
-  
-    )
-          
-            }
+        

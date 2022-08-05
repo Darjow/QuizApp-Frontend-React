@@ -25,7 +25,7 @@ export default function PlayQuiz() {
   const history = useHistory();
 
 
-  const positionAnswers = useEffect(()  => {
+  useEffect(()  => {
     let temp = [];
 
     if(Object.keys(currentQuiz).length !== 0){
@@ -77,7 +77,7 @@ export default function PlayQuiz() {
 
 
     if(Object.keys(currentQuiz).length === 0){
-      history.replace("/home");
+      history.push("/select");
       return (<></>);
     }
     else{

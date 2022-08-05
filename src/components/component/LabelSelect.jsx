@@ -1,14 +1,15 @@
 import { useFormContext } from 'react-hook-form';
 
-const LabelSelect = ({label, options, validation = {}, required, className}) => {
+const LabelSelect = ({label, options, validation = {}, required, ...rest}) => {
   const { register, formState: { errors } } = useFormContext();
   return (
-    <div className={className} >
+    <div className="px-5 py-3">
       <label htmlFor={label}>{label}{required?"*":""}</label>
       <select
         {...register(label, validation)}
         id={label}
-        name={label}>
+        name={label}
+        {...rest}>
         <option value={required?"" : "*"}>{required? "" : "Any"}</option>
         {options.map((value) => (
           <option key={value.id} value={value.id} >
@@ -16,8 +17,8 @@ const LabelSelect = ({label, options, validation = {}, required, className}) => 
           </option>
         ))}
       </select>
-      <div className='ml-10'>
-        {errors[label] && <p className="text-red-500">{errors[label].message}</p>}
+      <div>
+        {errors[label] && <p data-cy="labelinput_error" className="text-red-500">{errors[label].message}</p>}
         </div>
     </div>
   );

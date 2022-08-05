@@ -57,7 +57,7 @@ a:hover{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 2rem !important;
   margin: auto;
 
 }
@@ -188,7 +188,7 @@ video {
   box-shadow: 0 0 10px 2px;
   width: 600px;
   margin:auto;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   color: white;
 }
 .header-select{
@@ -212,7 +212,6 @@ video {
 }
 .quiz-form label{
   width:40%;
-  padding: 1rem 3rem;
 }
 .author{
   font-weight: 800;
@@ -291,6 +290,10 @@ video {
   }
   .btn{
     width: 100%;
+  }
+  .quiz-form{
+    max-height: 100vh;
+    max-width: 100vw;
   }
   .welkom-container > p {
     margin-top: 5px;

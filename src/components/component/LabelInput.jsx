@@ -3,7 +3,7 @@ import { useFormContext } from "react-hook-form";
 const LabelInput = ({id, required, value, label, type, validation, onChange, ...rest }) => {
   const { register, formState: { errors } } = useFormContext();
   return (
-    <div>
+    <div className="px-5 py-3">
       <label htmlFor={label}>{label}{required?"*":""}</label>
       <input
         {...register(label, validation)}
@@ -15,9 +15,7 @@ const LabelInput = ({id, required, value, label, type, validation, onChange, ...
         value={value}
       />
       {errors[label] && (
-        <div>
-          <p className="text-red-500">{errors[label].message}</p>
-        </div>
+          <p data-cy="labelinput_error" className="text-red-500">{errors[label].message}</p>  
       )}
     </div>
   );

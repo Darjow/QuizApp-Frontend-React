@@ -23,3 +23,17 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+
+Cypress.Commands.add("login", (username, password) => {
+  cy.intercept("http://localhost:9000/api/users/login").as("login")
+  
+  cy.visit("http://localhost:3000/login");
+
+  cy.get("[data-cy=username-input]").type(username)
+  cy.get("[data-cy=password-input]").type(password)
+  cy.get("[data-cy=submit-login]").click()
+
+  cy.wait("@login")
+
+})
