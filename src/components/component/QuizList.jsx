@@ -47,16 +47,16 @@ export default function QuizList() {
       {notApprovedQuizes.map((quiz) => {
         return (
           <tr>
-            <td className='text-center'> {quiz.question}</td>
-            <td className="text-center">{quiz.category}</td>
-            <td className="text-center">{quiz.difficulty}</td>
-            <td className="text-center">{quiz.correct_answer}</td>
-            <td className="text-center px-6">{quiz.incorrect_answers[0]}</td>
-            <td className="text-center px-6">{quiz.incorrect_answers[1]}</td>
-            <td className="text-center px-6">{quiz.incorrect_answers[2]? `${quiz.incorrect_answers[2]}` : ""}</td>
-            <td className="text-center border-solid border-r-3">{quiz.author}</td>
-            <td className='bg-white'><Button className='w-full' variant='contained' color='success' size='small' id={quiz.id} onClick={handleApprove}>Approve</Button></td>
-            <td className='bg-white'><Button className='w-full' variant='contained' color='error' size="small" id={quiz.id}  onClick={handleDeny}>Deny</Button></td>
+            <td className='text-center' data-cy="quiz_question"> {quiz.question}</td>
+            <td className="text-center"data-cy="quiz_category">{quiz.category}</td>
+            <td className="text-center"data-cy="quiz_difficulty">{quiz.difficulty}</td>
+            <td className="text-center"data-cy="quiz_correct_answer">{quiz.correct_answer}</td>
+            <td className="text-center px-6" data-cy="quiz_false_answer_1">{quiz.incorrect_answers[0]}</td>
+            <td className="text-center px-6" data-cy="quiz_false_answer_2">{quiz.incorrect_answers[1]}</td>
+            <td className="text-center px-6" data-cy="quiz_false_answer_3">{quiz.incorrect_answers[2]? `${quiz.incorrect_answers[2]}` : ""}</td>
+            <td className="text-center border-solid border-r-3" data-cy="quiz_author">{quiz.author}</td>
+            <td className='bg-white'><Button data-cy="submit_approve_quiz" className='w-full' variant='contained' color='success' size='small' id={quiz.id} onClick={handleApprove}>Approve</Button></td>
+            <td className='bg-white'><Button data-cy="submit_deny_quiz" className='w-full' variant='contained' color='error' size="small" id={quiz.id}  onClick={handleDeny}>Deny</Button></td>
           </tr>
         )
       })}

@@ -48,6 +48,8 @@ export default function CreateQuiz(){
 
   const onSubmit = useCallback( async (data) => {
     try{
+
+      console.log(data);
       let incorrect_answs = [];
       for (let i = 1; i <= 3; i++){
         if(data[`False Answer ${i}`] !== ""){
@@ -90,48 +92,57 @@ export default function CreateQuiz(){
             type="text"
             validation={validationRules.question}
             required={true}
+            data-cy="question-input"
           />
           <LabelSelect
             label="Category"
             options={toSelectList(Categories)}
             required={true}
             validation={validationRules.category}
+            data-cy="category-input"
           />
           <LabelSelect
             label="Difficulty"
             options={toSelectList(Difficulties)}
             required={true}
             validation={validationRules.difficulty}
+            data-cy="difficulty-input"
           /> 
           <LabelInput
             label="Correct Answer"
             type="text"
             validation={validationRules.correct_answer}
             required={true}
+            data-cy="correct_answer-input"
           />
           <LabelInput
             label="False Answer 1"
             type="text"
             validation={validationRules.incorrect_answers_required}
             required={true}
+            data-cy="false_answer_1-input"
           />
           <LabelInput
             label="False Answer 2"
             type="text"
             validation={validationRules.incorrect_answers_not_required}
+            data-cy="false_answer_2-input"
+
           />
           <LabelInput
             label="False Answer 3"
             type="text"
             validation={validationRules.incorrect_answers_not_required}
+            data-cy="false_answer_2-input"
           />
           <LabelInput
             label="Author"
             type="text"
             value={user.username}
             disabled
+            data-cy="false_answer_3-input"
           />
-          <Button type="submit" onClick={handleSubmit(onSubmit)} text="Add quiz" className="submit-answer"/>
+          <Button type="submit" onClick={handleSubmit(onSubmit)} text="Add quiz" className="submit-answer" data-cy="submit-create_quiz"/>
         </div>  
       </form>
     </FormProvider>
