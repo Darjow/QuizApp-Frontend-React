@@ -1,7 +1,6 @@
 beforeEach(() => {
   cy.login("dario admin", "testertest")
 });
-
 describe("create a quiz", () => {
   describe("failed creating a quiz", () => {
     it("should display errors", () => {
@@ -42,7 +41,7 @@ describe("create a quiz", () => {
       
       cy.wait("@create")
       cy.get("@create").should(({response}) => {
-        expect(response.statusCode).to.eq(204)
+        expect(response.statusCode).to.eq(201)
       })
     });
   })
@@ -57,10 +56,9 @@ describe("create a quiz", () => {
   })
 })
 
-
 describe("admin methods", () => {
   describe("approve quiz", () => {
-    it("should return a statuscode 204", () => {
+    it("should return a statuscode 200", () => {
 
       cy.visit("http://localhost:3000/quizes/approve");
       cy.intercept("POST", "http://localhost:9000/api/quiz/admin/*").as("approve")
@@ -71,7 +69,10 @@ describe("admin methods", () => {
       cy.wait("@approve")
       
       cy.get("@approve").should(({response}) => {
-        expect(response.statusCode).to.eq(204);
+        expect(response.statusCode).to.eq(200);
+        console.log(response.body[0]);
+        expect(response.body[0]).to.be.a("Object").and.to.have.keys([ 'approved', 'author', 'category', 'correct_answer', 'difficulty', 'id', 'incorrect_answers', 'question' ])
+        expect(response.body[0]).to.deep.include({approved:1})
       })      
     })
   })

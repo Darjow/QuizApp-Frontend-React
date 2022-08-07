@@ -6,6 +6,7 @@ export default function QuizList() {
 
   const {deleteQuiz, notApprovedQuizes, approveQuiz, refreshQuizes} = useQuizes();
 
+  
 
   useEffect(() =>  {
     const refresh = async () => {
@@ -44,7 +45,7 @@ export default function QuizList() {
     </tr>
     </thead>
     <tbody>
-      {notApprovedQuizes.map((quiz) => {
+      {notApprovedQuizes.data.map((quiz) => {
         return (
           <tr data-cy="quiz">
             <td className='text-center' data-cy="quiz_question"> {quiz.question}</td>

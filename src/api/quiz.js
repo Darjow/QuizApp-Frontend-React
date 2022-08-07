@@ -14,7 +14,7 @@ export const getQuizById = async (id) => {
 
 
 export const create = async ({category, difficulty, question, correct_answer, author, incorrect_answers}) => {
-  const {data} = await axios.post(`quiz/`,{
+  const {data} = await axios.post(`quiz`,{
       category,
       difficulty,
       question,
