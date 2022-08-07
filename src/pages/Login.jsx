@@ -94,6 +94,7 @@ export default function Login(){
         
           </div>
           <button data-cy="submit-login" type="submit" className="mt-2 btn-login btn btn-primary">Login</button>
+          {error?.data?.message && <p className='text-red-500'>{error.data.message}</p>} 
           <p className="no-account text-right">No account yet?<br/> <Link to="/register" className="text-primary">Click Here</Link> to sign up</p>
         </form>
         </div>
