@@ -12,43 +12,40 @@ export default function SelectQuiz(){
   const methods = useForm();
   const {handleSubmit} = methods;
   const history = useHistory();
-  const [error, setError] = useState(null);
   const {setCurrentQuiz} = useQuizes();
-
+  const [error, setError] = useState("")
 
   const handleShowQuiz = useCallback( async (formdata) => {
     setError(null);
-    let quizes = await getQuizesByCategorieAndDifficulty(formdata.category, formdata.difficulty);
-    
-    let quiz;
+    let quizes; 
 
-      if(quizes.data.length !== 0){
-        if(quizes.data.length === 1){
-          quiz = quizes.data[0]
-        }else{
-          quiz = quizes.data[Math.floor(Math.random() * quizes.data.length)]
-        }
-        setCurrentQuiz(quiz);
-        history.push(`/play`)
+    try{
+      quizes = await getQuizesByCategorieAndDifficulty(formdata.category, formdata.difficulty);
+    }catch(error){
+      setError("No quizes found with these parameters.")
+    }
+
+    if(quizes){
+      let quiz;
+      if(quizes.data.length === 1){
+        quiz = quizes.data[0]
       }else{
-        setError("No quizes found with these parameters.")
+        quiz = quizes.data[Math.floor(Math.random() * quizes.data.length)]
       }
-    
+      setCurrentQuiz(quiz);
+      history.push(`/play`)
+    }
+
     
   }, [history, setCurrentQuiz])
 
-  const removeErrors = useCallback(() => {
-    if(error){
-      setError(null);
-    }
-  },[error])
   
   return(
     <div className="select-container">
       <h2 className='header-select'>Select a quiz</h2>
       <FormProvider {...methods}>
         <form className="quiz-form" onSubmit={handleSubmit(handleShowQuiz)}>
-          <LabelSelect label={"category"} options={toSelectList(Categories)} required={false} onClick={removeErrors}/>
+          <LabelSelect label={"category"} options={toSelectList(Categories)} required={false}/>
           <LabelSelect label={"difficulty"} options={toSelectList(Difficulties)} required={false}/>
           <button type="submit" className='submit-answer'>Play</button>
         </form>

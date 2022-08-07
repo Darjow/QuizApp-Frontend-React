@@ -22,7 +22,7 @@ export const GamesProvider = ({ children }) => {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const {ready: authReady} = useSession();
-
+ 
   const refreshGames = useCallback(async () => {
     try{
       setError();
