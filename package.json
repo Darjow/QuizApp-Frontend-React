@@ -2,7 +2,7 @@
   "name": "quiz-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://dariobronders.github.io",
+  "homepage": "https://dariobronders.github.io/frontendweb-pieter-2122-DarioBronders/",
   "dependencies": {
     "@craco/craco": "^6.3.0",
     "@emotion/react": "^11.10.0",
