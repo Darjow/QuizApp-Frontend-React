@@ -31,6 +31,7 @@ const registerMethod = useRegister();
               <label htmlFor="email">Email</label>
               <input
                 type="text" name="email" id="email"
+                // eslint-disable-next-line no-useless-escape
                 {...register('email',{  required:"Please fill in a email.", pattern:{value:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, message:"Please enter a valid email."}, maxLength:{value:50, message:"Email is too long"}})}
                 className="form-control"
               />

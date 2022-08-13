@@ -2,7 +2,7 @@
   "name": "quiz-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://dariobronders.github.io/quiz-app",
+  "homepage": "https://dariobronders.github.io",
   "dependencies": {
     "@craco/craco": "^6.3.0",
     "@emotion/react": "^11.10.0",
@@ -29,8 +29,8 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "CI=false craco start",
-    "build": "CI=false craco build",
+    "start": "craco start",
+    "build": "craco build",
     "test": "cypress open",
     "eject": "react-scripts eject"
   },
