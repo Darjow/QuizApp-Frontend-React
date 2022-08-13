@@ -23,6 +23,7 @@ const Difficulties = {
 
 const toSelectList = (obj) => {
   let arr = [];
+  // eslint-disable-next-line array-callback-return
   Object.keys(obj).map(e => {
     arr.push({id: obj[e], name: obj[e]})
   })
