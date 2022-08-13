@@ -28,8 +28,8 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
+    "start": "CI=false craco start",
+    "build": "CI=false craco build",
     "test": "cypress open",
     "eject": "react-scripts eject"
   },
