@@ -2,7 +2,7 @@ import axiosroot from "axios";
 import config from "../config.json";
 
 export const axios = axiosroot.create({
-  baseURL: config.base_url,
+  baseURL: process.env.REACT_APP_BACKEND_BASE_URL || config.base_url,
   headers: {
     Authorization: `Bearer ${localStorage.getItem(config.token_key)}`
   }
