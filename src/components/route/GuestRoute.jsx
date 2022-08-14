@@ -7,7 +7,7 @@ export default function GuestRoute({children, ...rest}){
   
   return (
     <Route {...rest}>
-      {!isAuthed? (children): <Redirect from={pathname} to="/login"/>}
+      {!isAuthed? (children): <Redirect from={pathname} to="/home"/>}
     </Route>
   )
 }

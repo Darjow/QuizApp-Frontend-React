@@ -163,7 +163,7 @@ video {
 .welkom-container > p {
   width: 100%;
   text-align: center;
-  color: var(--main-color);
+  color: white;
   font-size: 2.7vw;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bold;

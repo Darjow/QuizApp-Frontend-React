@@ -24,7 +24,7 @@ export default function CreateQuiz(){
 
 
   const validationRules = {
-    question: {required: "This is required", minLength: {value: 10, message: "The question is too small" }, maxLength: {value: 150, message: "The question is too long"}},
+    question: {required: "Required", minLength: {value: 10, message: "The question is too small" }, maxLength: {value: 150, message: "The question is too long"}},
     category:{required: "Required"},   
     difficulty: {required: "Required"},
     incorrect_answers_required: {required: "Required", maxLength: {value: 25, message: "The answer is too long."}, validate: {

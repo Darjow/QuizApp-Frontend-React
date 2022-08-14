@@ -23,7 +23,7 @@ describe("create a quiz", () => {
     })
   })
 
-  describe("succesfully creating a quiz", () => {
+  describe("succesfully created a quiz", () => {
     it("should succesfully create a quiz", () => {
   
       cy.visit("http://localhost:3000/create");
@@ -70,7 +70,6 @@ describe("admin methods", () => {
       
       cy.get("@approve").should(({response}) => {
         expect(response.statusCode).to.eq(200);
-        console.log(response.body[0]);
         expect(response.body[0]).to.be.a("Object").and.to.have.keys([ 'approved', 'author', 'category', 'correct_answer', 'difficulty', 'id', 'incorrect_answers', 'question' ])
         expect(response.body[0]).to.deep.include({approved:1})
       })      
