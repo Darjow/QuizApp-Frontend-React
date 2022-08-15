@@ -1,4 +1,4 @@
-# Dario Bronders - Quiz Master
+# Quiz Master
 
 * **Aanmelden**
   * Gebruiker:      Dario User  - testertest
