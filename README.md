@@ -4,8 +4,12 @@ This application is the front-end for the quiz-application. In case you want to 
 
 
 * **Signing in:**
-  * User:           Dario User  - testertest
-  * Administrator:  Dario Admin - testertest
+  * User:  
+      • Username: Dario User
+      • Password: testertest
+  * Administrator:  
+      • Username: Dario Admin
+      • Password: testertest
 
 
 
