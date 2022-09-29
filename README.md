@@ -1,20 +1,21 @@
 # Quiz Master - Frontend
 
-Deze applicatie is de front-end voor de quiz-applicatie. Indien je deze applicatie wilt runnen, moet je de backend erbij halen en deze ook runnen.
+This application is the front-end for the quiz-application. In case you want to run this application, you must run the backend simultaneously: [Back end](https://github.com/Darjow/QuizApp-Backend-Node)
 
-* **Aanmelden**
-  * Gebruiker:      Dario User  - testertest
+
+* **Signing in:**
+  * User:           Dario User  - testertest
   * Administrator:  Dario Admin - testertest
 
 
 
-####  Voor je de applicatie start:
+####  Before you run the application:
 ```yarn install```
 
-####  De applicatie runnen: 
+####  Running the application: 
 ```yarn start```
 
-#### Testen runnen:
+#### Running the tests:
 ```yarn test```
 
 
