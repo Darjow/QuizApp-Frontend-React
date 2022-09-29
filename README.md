@@ -8,7 +8,7 @@ This application is the front-end for the quiz-application. In case you want to 
       • Username: Dario User <br>
       • Password: testertest
   * Administrator:  
-      • Username: Dario Admin
+      • Username: Dario Admin <br>
       • Password: testertest
 
 
