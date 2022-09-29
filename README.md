@@ -5,7 +5,7 @@ This application is the front-end for the quiz-application. In case you want to 
 
 * **Signing in:**
   * User:  
-      • Username: Dario User
+      • Username: Dario User <br>
       • Password: testertest
   * Administrator:  
       • Username: Dario Admin
