@@ -14,4 +14,7 @@ Deze applicatie is de front-end voor de quiz-applicatie. Indien je deze applicat
 ####  De applicatie runnen: 
 ```yarn start```
 
+#### Testen runnen:
+```yarn test```
+
 
